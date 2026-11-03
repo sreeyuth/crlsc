@@ -9,9 +9,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Poppins:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg: #12452B;
-    --panel: #175838;
-    --panel-2: #1D6B44;
+    --bg: #5A101C;
+    --panel: #701826;
+    --panel-2: #832030;
     --ink: #F5EFE4;
     --ink-soft: #D8C9AE;
     --line: rgba(212,175,55,0.22);
@@ -41,7 +41,7 @@
   h1,h2,h3{ margin:0; }
 
   /* ===== HERO / NAV ===== */
-  .hero{ background:linear-gradient(180deg, #12452B 0%, #0C3220 100%); border-bottom:1px solid var(--line); }
+  .hero{ background:linear-gradient(180deg, #5A101C 0%, #3E0A13 100%); border-bottom:1px solid var(--line); }
   nav.tabs{
     max-width:1200px; margin:0 auto; padding:18px 24px;
     display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;
@@ -420,8 +420,6 @@
             <span>Petawawa Civic Centre (Upstairs)<br>
             <a class="map-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Petawawa+Civic+Centre">View on map</a></span>
           </div>
-          <div class="row"><span class="tag">Price</span> $10 per ticket (adults require a ticket due to capacity)</div>
-          <div class="row"><span class="tag">Payment</span> E-transfer</div>
         </div>
 
         <div class="menu-box">
@@ -458,7 +456,7 @@
 
               <div class="field ticket-types">
                 <label>Tickets</label>
-                <p class="ticket-note">$10 per ticket. Adults require a ticket due to capacity.</p>
+                <p class="ticket-note">$10 per ticket.</p>
                 <div class="ticket-row">
                   <span class="ticket-name">Adults</span>
                   <span class="ticket-price">$10</span>
@@ -663,7 +661,7 @@
     } else if (!emailOk){
       helperText.textContent = "Add a valid email so we can reach you.";
     } else if (!partyOk){
-      helperText.textContent = "Select at least one ticket (adults need a ticket too).";
+      helperText.textContent = "Select at least one ticket.";
     } else if (!paymentOk){
       helperText.textContent = "Confirm you've sent the e-transfer above to activate submission.";
     } else {
