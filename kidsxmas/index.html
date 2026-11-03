@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CNL Kids Christmas Party</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Poppins:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #12452B;
+    --panel: #175838;
+    --panel-2: #1D6B44;
+    --ink: #F5EFE4;
+    --ink-soft: #D8C9AE;
+    --line: rgba(212,175,55,0.22);
+    --gold: #D4AF37;
+    --gold-light: #F0D77B;
+    --gold-deep: #A9852A;
+    --red: #B3122A;
+    --red-deep: #7E0C1D;
+    --green: #3E8E52;
+    --shadow: 0 20px 44px -18px rgba(0,0,0,0.65);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Poppins',sans-serif;
+    -webkit-font-smoothing:antialiased;
+    background-image:
+      radial-gradient(circle at 8% 0%, rgba(212,175,55,0.14), transparent 45%),
+      radial-gradient(circle at 92% 8%, rgba(179,18,42,0.16), transparent 40%),
+      radial-gradient(circle at 50% 100%, rgba(212,175,55,0.10), transparent 45%);
+  }
+  a{ color:inherit; }
+  .mono{ font-family:'JetBrains Mono', monospace; }
+  h1,h2,h3{ margin:0; }
+
+  /* ===== HERO / NAV ===== */
+  .hero{ background:linear-gradient(180deg, #12452B 0%, #0C3220 100%); border-bottom:1px solid var(--line); }
+  nav.tabs{
+    max-width:1200px; margin:0 auto; padding:18px 24px;
+    display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;
+  }
+  .brandmark{ display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:0.02em; font-size:1.02rem; color:var(--gold); }
+  .brandmark svg{ width:24px; height:24px; }
+  .tab-group{ display:flex; gap:6px; background:rgba(212,175,55,0.08); border:1px solid var(--line); border-radius:999px; padding:5px; }
+  .tab-btn{
+    appearance:none; border:none; cursor:pointer; padding:9px 20px; border-radius:999px;
+    font-family:'Poppins',sans-serif; font-weight:600; font-size:0.86rem; letter-spacing:0.02em;
+    color:rgba(245,239,228,0.7); background:transparent; transition:all .25s ease;
+  }
+  .tab-btn.active{ background:var(--gold); color:#1a0d02; box-shadow:var(--shadow); }
+  .tab-btn:not(.active):hover{ color:var(--ink); background:rgba(212,175,55,0.12); }
+  .tab-btn:focus-visible{ outline:2px solid var(--gold); outline-offset:2px; }
+
+  .lights-garland{ display:block; width:100%; height:30px; }
+
+  .panel{ display:none; animation:fade .35s ease; }
+
+
+  .panel.active{ display:block; }
+  @keyframes fade{ from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);} }
+
+  /* ===== LANDING GRID ===== */
+  main{ max-width:1200px; margin:0 auto; padding: 40px 24px 90px 24px; }
+  .landing-grid{
+    display:grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap:44px; align-items:start;
+  }
+  .register-col{ position:sticky; top:20px; }
+
+  @media (max-width:900px){
+    .landing-grid{ grid-template-columns:1fr; }
+    .register-col{ position:static; }
+    .highlights-col{ grid-template-columns:1fr; }
+  }
+
+  .eyebrow{
+    font-family:'JetBrains Mono', monospace; font-size:0.98rem; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--gold); margin-bottom:14px; display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before{ content:""; width:26px; height:1px; background:var(--gold); display:inline-block; }
+  .details-col h1{
+    font-family:'Cinzel', serif; font-weight:900; letter-spacing:0.02em;
+    font-size:clamp(2.1rem, 4.3vw, 3.2rem); line-height:1.08; color:var(--gold-light);
+    text-shadow: 0 0 18px rgba(212,175,55,0.35), 0 2px 2px rgba(0,0,0,0.8);
+  }
+  .details-col h1 em{ font-style:normal; color:#fff; }
+  .details-col p.tagline{ margin-top:16px; max-width:50ch; font-size:1.04rem; font-style:italic; line-height:1.65; color:var(--ink-soft); }
+
+  .event-meta{ margin-top:24px; display:flex; flex-direction:column; gap:10px; }
+  .event-meta .row{ display:flex; align-items:flex-start; gap:10px; font-size:0.94rem; color:var(--ink); }
+  .event-meta .tag{ font-family:'JetBrains Mono',monospace; font-size:0.68rem; letter-spacing:0.08em; text-transform:uppercase; color:#1a0d02; background:var(--gold); border-radius:5px; padding:3px 8px; margin-top:1px; flex:none; width:78px; text-align:center; }
+  .event-meta a.map-link{ color:var(--gold); text-decoration:underline; text-decoration-color:rgba(212,175,55,0.4); text-underline-offset:3px; }
+
+  .contact-note{
+    margin-top:18px; display:inline-flex; align-items:center; gap:8px; font-size:0.86rem; font-weight:600;
+    color:var(--gold-light); background:rgba(212,175,55,0.1); border:1px solid var(--line); border-radius:10px; padding:9px 14px;
+  }
+
+  /* ===== TICKET OPTION HIGHLIGHT CARDS ===== */
+  .highlights-col{ display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:16px; }
+  .option-card{
+    background:var(--panel); border:1px solid var(--line); border-radius:16px; padding:16px 14px 18px 14px;
+    box-shadow:var(--shadow);
+  }
+  .option-card.opt1{ border-top:3px solid var(--gold); }
+  .option-card.opt2{ border-top:3px solid var(--red); }
+  .option-card h3{ font-size:0.96rem; font-weight:700; color:#fff; margin-bottom:2px; white-space:nowrap; }
+  .option-card .opt-price{ font-family:'JetBrains Mono',monospace; font-size:0.86rem; color:var(--gold); font-weight:700; margin-bottom:12px; display:block; }
+  .option-card.opt2 .opt-price{ color:var(--red); }
+  .option-card ul{ margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:7px; }
+  .option-card li{ font-size:0.84rem; line-height:1.4; color:var(--ink-soft); display:flex; gap:8px; }
+  .option-card li::before{ content:"✓"; color:var(--gold); font-weight:700; flex:none; }
+  .option-card.opt2 li::before{ color:var(--red); }
+
+  .menu-box{
+    background:var(--panel); border:1px solid var(--line); border-radius:16px; padding:18px 20px;
+    margin-top:16px; box-shadow:var(--shadow);
+  }
+  .menu-box h3{ font-size:1.05rem; font-weight:700; color:#fff; margin-bottom:12px; display:flex; align-items:center; gap:8px; }
+  .menu-box ul{ margin:0; padding:0; list-style:none; display:grid; grid-template-columns:1fr 1fr; gap:7px 18px; }
+  .menu-box li{ font-size:0.86rem; line-height:1.4; color:var(--ink-soft); display:flex; gap:7px; }
+  .menu-box li::before{ content:"•"; color:var(--gold); flex:none; }
+  @media (max-width:640px){ .menu-box ul{ grid-template-columns:1fr; } }
+
+  .age-note-title{ margin-top:16px; margin-bottom:6px; font-size:1.02rem; font-weight:700; color:var(--gold); }
+  .age-note{ margin-top:0; padding-left:22px; font-size:0.96rem; line-height:1.55; color:var(--ink-soft); }
+  .age-note li{ margin-bottom:6px; }
+  .age-note li:last-child{ margin-bottom:0; }
+  .age-note li::marker{ color:var(--gold); font-weight:700; }
+  .age-subnote{ list-style:disc; margin:6px 0 0 0; padding-left:20px; }
+  .age-subnote li{ margin-bottom:4px; }
+  .age-subnote li::marker{ color:var(--gold-light); font-weight:400; }
+
+  /* ===== REGISTRATION CARD ===== */
+  .ticket-stub{
+    background:var(--panel); border-radius:20px; box-shadow:var(--shadow); border:1px solid var(--line);
+    padding:34px 34px 30px 34px;
+  }
+  .ticket-stub h2{ font-family:'Cinzel',serif; font-size:1.5rem; font-weight:700; color:var(--gold-light); margin-bottom:22px; }
+
+  .field{ margin-bottom:24px; }
+  .field label{ display:block; font-size:0.86rem; font-weight:600; letter-spacing:0.04em; text-transform:uppercase; color:var(--gold); margin-bottom:9px; }
+  .field input[type="text"], .field input[type="email"]{
+    width:100%; padding:15px 16px; border-radius:11px; border:1.5px solid var(--line);
+    font-family:'Poppins',sans-serif; font-size:1.05rem; background:var(--panel-2); color:var(--ink);
+    transition:border-color .2s ease;
+  }
+  .field input[type="text"]::placeholder, .field input[type="email"]::placeholder{
+    color:rgba(255,255,255,0.75); opacity:1;
+  }
+  .field input:focus{ outline:none; border-color:var(--gold); }
+  .field input:focus-visible{ outline:2px solid var(--gold); outline-offset:1px; }
+
+  .ticket-types{ margin-bottom:24px; }
+  .ticket-note{ font-size:0.84rem; color:var(--ink-soft); margin:-2px 0 10px 0; font-style:italic; }
+  .ticket-row{ display:grid; grid-template-columns:1fr 64px auto; align-items:center; gap:14px; padding:13px 4px; border-bottom:1px solid var(--line); }
+  .ticket-row:last-child{ border-bottom:none; }
+  .ticket-name{ font-size:1.02rem; font-weight:600; color:var(--ink); display:flex; flex-direction:column; gap:2px; }
+  .ticket-name small{ font-size:0.74rem; font-weight:400; color:var(--ink-soft); }
+  .ticket-price{ font-family:'JetBrains Mono',monospace; font-size:0.86rem; font-weight:600; color:var(--gold); text-align:right; }
+  .ticket-select{
+    padding:10px 14px; border-radius:10px; border:1.5px solid var(--line); background:var(--panel-2);
+    font-family:'JetBrains Mono',monospace; font-size:1.05rem; font-weight:600; color:var(--ink); cursor:pointer;
+    min-width:64px; text-align:center;
+  }
+  .ticket-select:focus{ outline:none; border-color:var(--gold); }
+
+  .divider-row{ height:1px; background:repeating-linear-gradient(90deg, var(--line) 0 8px, transparent 8px 14px); margin:28px 0; }
+
+  .total-box{
+    background:linear-gradient(135deg, var(--red-deep), var(--gold-deep));
+    border-radius:14px; padding:20px 22px; color:#fff;
+    display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:22px;
+  }
+  .total-box .label{ font-size:0.86rem; letter-spacing:0.06em; text-transform:uppercase; color:rgba(255,255,255,0.85); font-weight:600; }
+  .total-box .amount{ font-family:'JetBrains Mono',monospace; font-size:2.2rem; font-weight:700; }
+
+  .etransfer-note{
+    background:var(--panel-2); border:1px dashed var(--gold); border-radius:12px; padding:16px 18px;
+    font-size:1.02rem; line-height:1.6; color:var(--ink); margin-bottom:26px;
+  }
+  .etransfer-note strong{ font-family:'JetBrains Mono',monospace; color:var(--gold); }
+  .etransfer-note strong.emphasis-underline{ font-family:'Poppins',sans-serif; color:var(--ink); text-decoration:underline; text-underline-offset:2px; }
+  .copy-btn{
+    font-family:'Poppins',sans-serif; font-weight:600; font-size:0.82rem; padding:4px 12px; border-radius:999px;
+    border:1.3px solid var(--gold); background:transparent; color:var(--gold); cursor:pointer; margin:0 4px;
+    vertical-align:middle; transition:all .2s ease;
+  }
+  .copy-btn:hover{ background:var(--gold); color:#1a0d02; }
+  .copy-btn.copied{ background:var(--green); border-color:var(--green); color:#fff; }
+
+  .field fieldset{ border:none; padding:0; margin:0; }
+  .field legend{ display:block; font-size:0.86rem; font-weight:600; letter-spacing:0.04em; text-transform:uppercase; color:var(--gold); margin-bottom:11px; padding:0; }
+  .confirm-toggle{
+    width:100%; display:flex; align-items:center; gap:14px; text-align:left;
+    padding:17px 18px; border-radius:12px; border:1.5px solid var(--line); background:var(--panel-2);
+    font-family:'Poppins',sans-serif; font-weight:600; font-size:1.04rem; color:var(--ink-soft); cursor:pointer;
+    transition:all .2s ease;
+  }
+  .confirm-toggle:hover{ border-color:var(--gold); }
+  .confirm-toggle:focus-visible{ outline:2px solid var(--gold); outline-offset:2px; }
+  .confirm-toggle .check-circle{
+    flex:none; width:25px; height:25px; border-radius:50%; border:2px solid var(--line); background:var(--panel);
+    position:relative; transition:all .2s ease;
+  }
+  .confirm-toggle.selected{ background:var(--green); border-color:var(--green); color:#fff; }
+  .confirm-toggle.selected .check-circle{ background:#fff; border-color:#fff; }
+  .confirm-toggle.selected .check-circle::after{
+    content:""; position:absolute; left:50%; top:46%; width:6px; height:11px;
+    border-right:3px solid var(--green); border-bottom:3px solid var(--green);
+    transform:translate(-50%,-50%) rotate(45deg);
+  }
+
+  .submit-btn{
+    width:100%; padding:18px; border-radius:12px; border:none; margin-top:10px;
+    font-family:'Poppins',sans-serif; font-weight:700; font-size:1.14rem; letter-spacing:0.01em;
+    cursor:not-allowed; background:#2A2018; color:#8A7B65; transition:all .25s ease;
+  }
+  .submit-btn.enabled{
+    cursor:pointer; background:linear-gradient(135deg, var(--gold), var(--red)); color:#fff;
+    box-shadow:0 12px 24px -10px rgba(212,175,55,0.5);
+  }
+  .submit-btn.enabled:hover{ transform:translateY(-1px); }
+  .submit-btn:focus-visible{ outline:2px solid var(--gold); outline-offset:2px; }
+  .helper-text{ font-size:0.88rem; color:var(--ink-soft); margin-top:10px; text-align:center; }
+
+  .confirmation{ text-align:center; padding:20px 6px 6px 6px; }
+  .confirmation svg{ width:64px; height:64px; margin-bottom:10px; }
+  .confirmation h3{ font-family:'Cinzel',serif; font-size:1.3rem; color:var(--gold-light); margin-bottom:8px; }
+  .confirmation p{ font-size:0.94rem; color:var(--ink-soft); line-height:1.6; margin-bottom:20px; }
+  .confirmation a{ color:var(--gold); text-decoration:underline; }
+  .confirmation button{
+    background:transparent; border:1.5px solid var(--gold); color:var(--gold); font-weight:600;
+    padding:10px 22px; border-radius:999px; cursor:pointer; font-family:'Poppins',sans-serif;
+  }
+  .confirmation button:hover{ background:var(--gold); color:#1a0d02; }
+
+  /* ===== ADMIN ===== */
+  .admin-gate{
+    max-width:400px; margin:40px auto; background:var(--panel); border:1px solid var(--line); border-radius:18px;
+    padding:32px 30px; text-align:center; box-shadow:var(--shadow);
+  }
+  .admin-gate svg{ width:44px; height:44px; margin-bottom:14px; color:var(--gold); }
+  .admin-gate h2{ font-size:1.25rem; color:#fff; margin-bottom:6px; }
+  .admin-gate p{ font-size:0.86rem; color:var(--ink-soft); margin-bottom:20px; }
+  .admin-gate input{
+    width:100%; padding:12px 14px; border-radius:10px; border:1.5px solid var(--line); text-align:center;
+    font-family:'JetBrains Mono',monospace; font-size:1.1rem; letter-spacing:0.3em; margin-bottom:14px; background:var(--panel-2); color:var(--ink);
+  }
+  .admin-gate input:focus{ outline:none; border-color:var(--gold); }
+  .admin-gate .unlock-btn{
+    width:100%; padding:13px; border:none; border-radius:10px; font-weight:700; cursor:pointer;
+    background:var(--gold); color:#1a0d02; font-family:'Poppins',sans-serif;
+  }
+  .admin-gate .unlock-btn:hover{ background:var(--gold-deep); }
+  .admin-gate .error-msg{ color:var(--red); font-size:0.82rem; margin-top:10px; min-height:1.2em; }
+
+  .registration-toggle{
+    display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap;
+    background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:16px 20px; margin-bottom:20px;
+    box-shadow:var(--shadow);
+  }
+  .registration-toggle span{ font-size:0.96rem; color:var(--ink); }
+  .registration-toggle strong.reg-open{ color:var(--green); }
+  .registration-toggle strong.reg-closed{ color:var(--red); }
+  .toggle-reg-btn{
+    font-family:'Poppins',sans-serif; font-weight:700; font-size:0.88rem; padding:10px 20px; border-radius:999px;
+    border:none; cursor:pointer; transition:all .2s ease; color:#fff;
+  }
+  .toggle-reg-btn[data-current="open"]{ background:var(--red); }
+  .toggle-reg-btn[data-current="closed"]{ background:var(--green); }
+  .toggle-reg-btn:hover{ opacity:0.9; }
+  .toggle-reg-btn:disabled{ opacity:0.6; cursor:not-allowed; }
+
+  .admin-summary{ display:grid; grid-template-columns:repeat(5,1fr); gap:14px; margin-bottom:28px; }
+  .summary-card{ background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:18px; text-align:center; }
+  .summary-card .num{ font-family:'JetBrains Mono',monospace; font-size:1.7rem; font-weight:700; color:var(--gold); }
+  .summary-card .lbl{ font-size:0.74rem; letter-spacing:0.05em; text-transform:uppercase; color:var(--ink-soft); margin-top:4px; }
+  @media (max-width:900px){ .admin-summary{ grid-template-columns:repeat(3,1fr); } }
+  @media (max-width:640px){ .admin-summary{ grid-template-columns:repeat(2,1fr); } }
+
+  .admin-toolbar{ display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; flex-wrap:wrap; gap:10px; }
+  .admin-toolbar h2{ font-size:1.2rem; color:#fff; }
+  .toolbar-actions{ display:flex; gap:10px; flex-wrap:wrap; }
+  .refresh-btn{
+    background:transparent; border:1.5px solid var(--gold); color:var(--gold); font-weight:600;
+    padding:8px 16px; border-radius:999px; cursor:pointer; font-family:'Poppins',sans-serif; font-size:0.84rem;
+  }
+  .refresh-btn:hover{ background:var(--gold); color:#1a0d02; }
+
+  .payment-gate{
+    display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+    background:var(--panel); border:1px dashed var(--gold); border-radius:12px; padding:12px 16px; margin-bottom:14px;
+  }
+  .payment-gate svg{ width:20px; height:20px; color:var(--gold); flex:none; }
+  .payment-gate span{ font-size:0.86rem; color:var(--ink-soft); }
+  .payment-gate input{
+    font-family:'JetBrains Mono',monospace; padding:8px 10px; border-radius:8px; border:1.5px solid var(--line);
+    width:110px; background:var(--panel-2); color:var(--ink); letter-spacing:0.2em; text-align:center; font-size:0.9rem;
+  }
+  .payment-gate input:focus{ outline:none; border-color:var(--gold); }
+  .payment-unlock-btn{
+    background:var(--gold); color:#1a0d02; border:none; padding:8px 16px; border-radius:8px;
+    font-weight:600; cursor:pointer; font-family:'Poppins',sans-serif; font-size:0.84rem;
+  }
+  .payment-unlock-btn:hover{ background:var(--gold-deep); }
+  .payment-error{ color:var(--red); font-size:0.78rem; }
+
+  table.roster{ width:100%; border-collapse:collapse; background:var(--panel); border-radius:14px; overflow:hidden; box-shadow:var(--shadow); }
+  table.roster thead th{
+    text-align:left; font-size:0.72rem; letter-spacing:0.07em; text-transform:uppercase; color:#1a0d02;
+    background:var(--gold); padding:12px 16px; font-weight:600;
+  }
+  table.roster tbody td{ padding:13px 16px; border-bottom:1px solid var(--line); font-size:0.92rem; color:var(--ink); }
+  table.roster tbody tr:last-child td{ border-bottom:none; }
+  table.roster tbody tr:hover{ background:var(--panel-2); }
+  table.roster td.amt{ font-family:'JetBrains Mono',monospace; font-weight:600; color:var(--gold); }
+  .party-breakdown{ font-size:0.74rem; color:var(--ink-soft); margin-top:2px; }
+
+  .payment-select{
+    font-family:'Poppins',sans-serif; font-weight:600; font-size:0.82rem; padding:6px 10px; border-radius:8px;
+    border:1.5px solid var(--line); background:var(--panel-2); color:var(--ink); cursor:pointer;
+  }
+  .payment-select.is-paid{ background:var(--green); border-color:var(--green); color:#fff; }
+  .payment-select.is-notpaid{ background:var(--panel-2); border-color:var(--gold); color:var(--gold); }
+  .status-cell{ display:flex; flex-direction:column; align-items:flex-start; gap:6px; }
+  .payment-locked{ font-size:0.78rem; font-weight:600; border-radius:999px; padding:5px 12px; display:inline-block; }
+  .payment-locked.is-paid{ background:var(--green); color:#fff; }
+  .payment-locked.is-notpaid{ background:var(--panel-2); border:1px solid var(--gold); color:var(--gold); }
+  .payment-locked.is-none{ background:var(--panel-2); border:1px solid var(--gold); color:var(--gold); }
+  .payment-locked.is-ack{ background:#6B3FA0; color:#fff; }
+
+  .email-status-select{
+    font-family:'Poppins',sans-serif; font-weight:600; font-size:0.78rem; padding:5px 10px; border-radius:8px;
+    border:1.5px solid var(--line); background:var(--panel-2); color:var(--ink); cursor:pointer;
+  }
+  .email-status-select.is-none{ background:var(--panel-2); border-color:var(--gold); color:var(--gold); }
+  .email-status-select.is-ack{ background:#6B3FA0; border-color:#6B3FA0; color:#fff; }
+  .email-status-select.is-tickets{ background:var(--green); border-color:var(--green); color:#fff; }
+
+  .del-btn{ background:none; border:none; color:var(--red); cursor:pointer; font-size:0.8rem; font-weight:600; }
+  .del-btn:hover{ text-decoration:underline; }
+  .empty-state{ text-align:center; padding:50px 20px; color:var(--ink-soft); background:var(--panel); border-radius:14px; border:1px dashed var(--line); }
+  .empty-state svg{ width:44px; height:44px; margin-bottom:12px; opacity:0.6; }
+
+  footer{ text-align:center; padding:26px 20px 40px 20px; font-size:0.78rem; color:var(--ink-soft); }
+  footer a{ color:var(--gold); text-decoration:underline; text-decoration-color:rgba(212,175,55,0.4); text-underline-offset:2px; }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration:0.001ms !important; transition-duration:0.001ms !important; scroll-behavior:auto !important; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <nav class="tabs">
+    <div class="brandmark">
+      <svg viewBox="0 0 32 32" fill="none"><path d="M16 4 L20 13 L29 13 L21.5 18.5 L24.5 28 L16 22 L7.5 28 L10.5 18.5 L3 13 L12 13 Z" fill="currentColor"/></svg>
+      Chalk River Social Club
+    </div>
+    <div class="tab-group" role="tablist">
+      <button class="tab-btn active" data-tab="register" role="tab" aria-selected="true">Register</button>
+      <button class="tab-btn" data-tab="admin" role="tab" aria-selected="false">Admin Only</button>
+    </div>
+  </nav>
+  <svg class="lights-garland" viewBox="0 0 1400 36" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <defs>
+      <filter id="bulbGlow" x="-100%" y="-100%" width="300%" height="300%">
+        <feGaussianBlur stdDeviation="3.2" result="blur"/>
+        <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+      </filter>
+    </defs>
+    <line x1="0" y1="3" x2="1400" y2="3" stroke="#4a3a20" stroke-width="1.5" opacity="0.7"/>
+    <g id="garland-bulbs"></g>
+  </svg>
+</header>
+<script>
+(function(){
+  var colors = ["#E0455A","#F0D77B","#3E8E52","#ffffff"];
+  var g = document.getElementById("garland-bulbs");
+  if (!g) return;
+  var spacing = 90, count = Math.ceil(1400 / spacing) + 1;
+  for (var i = 0; i < count; i++){
+    var x = i * spacing + 40;
+    var color = colors[i % colors.length];
+    var wire = document.createElementNS("http://www.w3.org/2000/svg","line");
+    wire.setAttribute("x1", x); wire.setAttribute("y1", 3);
+    wire.setAttribute("x2", x); wire.setAttribute("y2", 20);
+    wire.setAttribute("stroke", "#4a3a20"); wire.setAttribute("stroke-width", "1.2"); wire.setAttribute("opacity","0.7");
+    g.appendChild(wire);
+    var bulb = document.createElementNS("http://www.w3.org/2000/svg","circle");
+    bulb.setAttribute("cx", x); bulb.setAttribute("cy", 25); bulb.setAttribute("r", 5.5);
+    bulb.setAttribute("fill", color); bulb.setAttribute("filter", "url(#bulbGlow)");
+    g.appendChild(bulb);
+  }
+})();
+</script>
+
+<main>
+  <!-- ===== REGISTER PANEL ===== -->
+  <section id="register-panel" class="panel active">
+    <div class="landing-grid">
+      <div class="details-col">
+        <div class="eyebrow">CR Social Club Presents</div>
+        <h1>🎅 <em>CNL Kids Christmas Party</em> 🎄</h1>
+        <p class="tagline">Activity stations, a picture with Santa, close-up magic, pizza and snacks — followed by a sponsored public skate!</p>
+        <div class="event-meta">
+          <div class="row"><span class="tag">Date</span> Sunday, November 29, 2026</div>
+          <div class="row"><span class="tag">Time</span> 11:30 AM – 1:00 PM · Sponsored Public Skate at 1:00 PM</div>
+          <div class="row"><span class="tag">Where</span>
+            <span>Petawawa Civic Centre (Upstairs)<br>
+            <a class="map-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Petawawa+Civic+Centre">View on map</a></span>
+          </div>
+          <div class="row"><span class="tag">Price</span> $10 per ticket (adults require a ticket due to capacity)</div>
+          <div class="row"><span class="tag">Payment</span> E-transfer</div>
+        </div>
+
+        <div class="menu-box">
+          <h3>🎅 Party Highlights</h3>
+          <ul>
+            <li>Activity Stations</li>
+            <li>Picture with Santa (small gift)</li>
+            <li>Close-up Magic</li>
+            <li>Pizza and snacks</li>
+          </ul>
+        </div>
+
+        <p class="age-note-title">Notes:</p>
+        <ol class="age-note">
+          <li>This event is open to CNL staff and contractors, and their family and friends.</li>
+        </ol>
+      </div>
+
+      <div class="register-col">
+        <div class="ticket-stub" id="ticket-stub">
+          <div id="form-view">
+            <h2>Registration</h2>
+
+            <form id="reg-form" novalidate>
+              <div class="field">
+                <label for="reg-name">Name</label>
+                <input type="text" id="reg-name" placeholder="Your full name" autocomplete="name" required>
+              </div>
+
+              <div class="field">
+                <label for="reg-email">Email</label>
+                <input type="email" id="reg-email" placeholder="you@example.com" autocomplete="email" required>
+              </div>
+
+              <div class="field ticket-types">
+                <label>Tickets</label>
+                <p class="ticket-note">$10 per ticket. Adults require a ticket due to capacity.</p>
+                <div class="ticket-row">
+                  <span class="ticket-name">Adults</span>
+                  <span class="ticket-price">$10</span>
+                  <select id="reg-adults" class="ticket-select"></select>
+                </div>
+                <div class="ticket-row">
+                  <span class="ticket-name">Children</span>
+                  <span class="ticket-price">$10</span>
+                  <select id="reg-children" class="ticket-select"></select>
+                </div>
+              </div>
+
+              <div class="divider-row"></div>
+
+              <div class="total-box">
+                <span class="label">Total amount</span>
+                <span class="amount mono" id="total-amount">$0.00</span>
+              </div>
+
+              <div id="etransfer-section">
+                <div class="etransfer-note">
+                  E-transfer <strong id="etransfer-amount">$0.00</strong> to CR Social Club at
+                  <strong>crsocclb@cnl.ca</strong>
+                  <button type="button" class="copy-btn" id="copy-email-btn" aria-label="Copy email address to clipboard">Copy</button>
+                  and <strong class="emphasis-underline">return to this page</strong> to complete your registration.
+                </div>
+
+                <div class="field">
+                  <fieldset>
+                    <legend>Have you done the e-transfer?</legend>
+                    <button type="button" class="confirm-toggle" id="etransfer-confirm-btn" aria-pressed="false">
+                      <span class="check-circle" aria-hidden="true"></span>
+                      Yes, I have completed the e-transfer
+                    </button>
+                  </fieldset>
+                </div>
+              </div>
+
+              <button type="submit" class="submit-btn" id="submit-btn" disabled>Complete Registration</button>
+              <p class="helper-text" id="helper-text">Complete the e-transfer, then confirm above, to activate your submission.</p>
+            </form>
+          </div>
+
+          <div id="confirm-view" class="confirmation" hidden>
+            <svg viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="30" fill="#D4AF37"/><path d="M20 33 L28 41 L45 23" stroke="#0B0705" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+            <h3>Thank you!</h3>
+            <p>Your spot is reserved. See you at the party!</p>
+            <button type="button" id="register-another">Register another party</button>
+          </div>
+
+          <div id="closed-view" class="confirmation" hidden>
+            <h3>Registration is now closed</h3>
+            <p>Thanks for your interest — registration for this event has closed. For questions, contact the CR Social Club at <a href="mailto:crsocclb@cnl.ca">crsocclb@cnl.ca</a>.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ADMIN PANEL ===== -->
+  <section id="admin-panel" class="panel">
+    <div class="admin-gate" id="admin-gate">
+      <svg viewBox="0 0 24 24" fill="none"><rect x="4" y="10" width="16" height="10" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M8 10V7a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="1.6"/></svg>
+      <h2>Admin access</h2>
+      <p>Enter the event passcode to view the registration roster.</p>
+      <input type="password" id="admin-password" inputmode="numeric" maxlength="8" placeholder="••••" autocomplete="off">
+      <button class="unlock-btn" id="unlock-btn">Unlock roster</button>
+      <div class="error-msg" id="admin-error"></div>
+    </div>
+
+    <div class="admin-content" id="admin-content" hidden>
+      <div class="registration-toggle" id="registration-toggle">
+        <span>Registration is currently <strong id="reg-status-label">—</strong></span>
+        <button class="toggle-reg-btn" id="toggle-reg-btn">…</button>
+      </div>
+
+      <div class="admin-summary">
+        <div class="summary-card"><div class="num mono" id="stat-regs">0</div><div class="lbl">Registrations</div></div>
+        <div class="summary-card"><div class="num mono" id="stat-guests">0</div><div class="lbl">Total Attendees</div></div>
+        <div class="summary-card"><div class="num mono" id="stat-adults">0</div><div class="lbl">Adults</div></div>
+        <div class="summary-card"><div class="num mono" id="stat-children">0</div><div class="lbl">Children</div></div>
+        <div class="summary-card"><div class="num mono" id="stat-total">$0.00</div><div class="lbl">Total Ticket Sales</div></div>
+      </div>
+
+      <div class="admin-toolbar">
+        <h2>Registration roster</h2>
+        <div class="toolbar-actions">
+          <button class="refresh-btn" id="export-pdf-btn">Export to PDF</button>
+          <button class="refresh-btn" id="refresh-btn">Refresh</button>
+        </div>
+      </div>
+
+      <div class="payment-gate" id="payment-gate">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        <span id="payment-gate-label">Registration Status is view-only. Enter the code to edit it.</span>
+        <input type="password" id="payment-password" inputmode="numeric" maxlength="8" placeholder="Code" autocomplete="off">
+        <button class="payment-unlock-btn" id="payment-unlock-btn">Unlock editing</button>
+        <button class="payment-unlock-btn" id="payment-save-btn" hidden>Save changes</button>
+        <span class="payment-error" id="payment-error"></span>
+      </div>
+
+      <div id="roster-wrap"></div>
+    </div>
+  </section>
+</main>
+
+<footer>CNL Kids Christmas Party &middot; Petawawa Civic Centre (Upstairs) &middot; Questions? Contact <a href="mailto:crsocclb@cnl.ca">crsocclb@cnl.ca</a></footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import { getDatabase, ref, push, set, get, remove, update } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyARxyTPLY5S-HsAMsEBiosWl52Y2p-2RU8",
+    authDomain: "kidsxmas.firebaseapp.com",
+    databaseURL: "https://kidsxmas-default-rtdb.europe-west1.firebasedatabase.app",
+    projectId: "kidsxmas",
+    storageBucket: "kidsxmas.firebasestorage.app",
+    messagingSenderId: "814568198417",
+    appId: "1:814568198417:web:7ce2a11052604d82edfcb0"
+  };
+  const firebaseApp = initializeApp(firebaseConfig);
+  const db = getDatabase(firebaseApp);
+
+(function(){
+  "use strict";
+  const TICKET_PRICE = 10;
+  const ADMIN_CODE = "2020";
+  const PAYMENT_CODE = "2021";
+  let adminUnlocked = false;
+  let paymentUnlocked = false;
+
+  /* ---------- Tab switching ---------- */
+  const tabBtns = document.querySelectorAll(".tab-btn");
+  const panels = { register: document.getElementById("register-panel"), admin: document.getElementById("admin-panel") };
+  tabBtns.forEach(btn => {
+    btn.addEventListener("click", () => {
+      tabBtns.forEach(b => { b.classList.remove("active"); b.setAttribute("aria-selected","false"); });
+      btn.classList.add("active"); btn.setAttribute("aria-selected","true");
+      Object.values(panels).forEach(p => p.classList.remove("active"));
+      panels[btn.dataset.tab].classList.add("active");
+      if (btn.dataset.tab === "admin" && adminUnlocked) loadRoster();
+    });
+  });
+
+  /* ---------- Registration form logic ---------- */
+  const nameInput = document.getElementById("reg-name");
+  const emailInput = document.getElementById("reg-email");
+  const adultsSelect = document.getElementById("reg-adults");
+  const childrenSelect = document.getElementById("reg-children");
+  const totalAmountEl = document.getElementById("total-amount");
+  const etransferAmountEl = document.getElementById("etransfer-amount");
+  const confirmToggleBtn = document.getElementById("etransfer-confirm-btn");
+  const submitBtn = document.getElementById("submit-btn");
+  const helperText = document.getElementById("helper-text");
+  const form = document.getElementById("reg-form");
+  const formView = document.getElementById("form-view");
+  const confirmView = document.getElementById("confirm-view");
+
+  let etransferConfirmed = false;
+
+  function populateCountSelect(selectEl, max, defaultValue){
+    for (let i = 0; i <= max; i++){
+      const opt = document.createElement("option");
+      opt.value = String(i);
+      opt.textContent = String(i);
+      if (i === defaultValue) opt.selected = true;
+      selectEl.appendChild(opt);
+    }
+  }
+  populateCountSelect(adultsSelect, 10, 0);
+  populateCountSelect(childrenSelect, 10, 0);
+
+  function ticketCounts(){
+    return {
+      adults: parseInt(adultsSelect.value, 10) || 0,
+      children: parseInt(childrenSelect.value, 10) || 0
+    };
+  }
+  function currentPartySize(){ const c = ticketCounts(); return c.adults + c.children; }
+  function currentTotal(){ return currentPartySize() * TICKET_PRICE; }
+
+  function refreshTotals(){
+    const formatted = "$" + currentTotal().toFixed(2);
+    totalAmountEl.textContent = formatted;
+    etransferAmountEl.textContent = formatted;
+    updateSubmitState();
+  }
+
+  function updateSubmitState(){
+    const nameOk = nameInput.value.trim().length > 0;
+    const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value.trim());
+    const partyOk = currentPartySize() >= 1;
+    const paymentOk = etransferConfirmed === true;
+    const ready = nameOk && emailOk && partyOk && paymentOk;
+    submitBtn.disabled = !ready;
+    submitBtn.classList.toggle("enabled", ready);
+    if (!nameOk){
+      helperText.textContent = "Add your name to finish reserving your spot.";
+    } else if (!emailOk){
+      helperText.textContent = "Add a valid email so we can reach you.";
+    } else if (!partyOk){
+      helperText.textContent = "Select at least one ticket (adults need a ticket too).";
+    } else if (!paymentOk){
+      helperText.textContent = "Confirm you've sent the e-transfer above to activate submission.";
+    } else {
+      helperText.textContent = "You're all set — confirm below.";
+    }
+  }
+
+  [adultsSelect, childrenSelect].forEach(sel => sel.addEventListener("change", refreshTotals));
+  nameInput.addEventListener("input", updateSubmitState);
+  emailInput.addEventListener("input", updateSubmitState);
+
+  confirmToggleBtn.addEventListener("click", () => {
+    etransferConfirmed = !etransferConfirmed;
+    confirmToggleBtn.classList.toggle("selected", etransferConfirmed);
+    confirmToggleBtn.setAttribute("aria-pressed", String(etransferConfirmed));
+    updateSubmitState();
+  });
+
+  const copyEmailBtn = document.getElementById("copy-email-btn");
+  if (copyEmailBtn){
+    copyEmailBtn.addEventListener("click", async () => {
+      const email = "crsocclb@cnl.ca";
+      try{
+        await navigator.clipboard.writeText(email);
+      }catch(err){
+        const temp = document.createElement("textarea");
+        temp.value = email;
+        temp.style.position = "fixed";
+        temp.style.opacity = "0";
+        document.body.appendChild(temp);
+        temp.select();
+        try{ document.execCommand("copy"); }catch(e2){ console.error("Copy fallback failed:", e2); }
+        document.body.removeChild(temp);
+      }
+      const original = copyEmailBtn.textContent;
+      copyEmailBtn.textContent = "Copied!";
+      copyEmailBtn.classList.add("copied");
+      setTimeout(() => {
+        copyEmailBtn.textContent = original;
+        copyEmailBtn.classList.remove("copied");
+      }, 1800);
+    });
+  }
+
+  refreshTotals();
+
+  /* ---------- Registration open/closed toggle ---------- */
+  async function getRegistrationOpen(){
+    try{
+      const snap = await get(ref(db, "settings/registrationOpen"));
+      return snap.exists() ? snap.val() !== false : true;
+    }catch(err){
+      console.error("Failed to check registration status:", err);
+      return true;
+    }
+  }
+  async function setRegistrationOpen(isOpen){
+    try{
+      await set(ref(db, "settings/registrationOpen"), isOpen);
+      return true;
+    }catch(err){
+      console.error("Failed to update registration status:", err);
+      return false;
+    }
+  }
+  (async () => {
+    const isOpen = await getRegistrationOpen();
+    if (!isOpen){
+      formView.hidden = true;
+      confirmView.hidden = true;
+      document.getElementById("closed-view").hidden = false;
+    }
+  })();
+
+  /* ---------- Storage helpers (Firebase Realtime Database) ---------- */
+  async function saveRegistration(record){
+    try{
+      const newRef = push(ref(db, "registrations"));
+      await set(newRef, record);
+      return true;
+    }catch(err){
+      console.error("Failed to save registration:", err);
+      return false;
+    }
+  }
+
+  async function fetchAllRegistrations(){
+    const out = [];
+    try{
+      const snapshot = await get(ref(db, "registrations"));
+      if (snapshot.exists()){
+        snapshot.forEach(childSnap => {
+          const val = childSnap.val();
+          val.id = childSnap.key;
+          out.push(val);
+        });
+      }
+    }catch(err){
+      console.error("Failed to load registrations:", err);
+    }
+    out.sort((a,b) => (b.timestamp||0) - (a.timestamp||0));
+    return out;
+  }
+
+  async function deleteRegistration(id){
+    try{
+      await remove(ref(db, "registrations/" + id));
+      return true;
+    }catch(err){
+      console.error("Failed to delete registration:", err);
+      return false;
+    }
+  }
+
+  async function updatePaymentStatus(id, value){
+    try{
+      await update(ref(db, "registrations/" + id), { paymentDone: value });
+      return true;
+    }catch(err){
+      console.error("Failed to update payment status:", err);
+      return false;
+    }
+  }
+
+  /* ---------- Form submit ---------- */
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    if (submitBtn.disabled) return;
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Saving...";
+
+    const counts = ticketCounts();
+    const record = {
+      name: nameInput.value.trim(),
+      email: emailInput.value.trim(),
+      adults: counts.adults,
+      children: counts.children,
+      partySize: currentPartySize(),
+      total: currentTotal(),
+      timestamp: Date.now()
+    };
+
+    const ok = await saveRegistration(record);
+
+    submitBtn.textContent = "Complete Registration";
+    if (ok){
+      formView.hidden = true;
+      confirmView.hidden = false;
+      if (adminUnlocked) loadRoster();
+    } else {
+      submitBtn.disabled = false;
+      submitBtn.classList.add("enabled");
+      helperText.textContent = "Something went wrong saving your registration — please try again.";
+    }
+  });
+
+  document.getElementById("register-another").addEventListener("click", () => {
+    form.reset();
+    adultsSelect.value = "0";
+    childrenSelect.value = "0";
+    etransferConfirmed = false;
+    confirmToggleBtn.classList.remove("selected");
+    confirmToggleBtn.setAttribute("aria-pressed", "false");
+    refreshTotals();
+    confirmView.hidden = true;
+    formView.hidden = false;
+  });
+
+  /* ---------- Admin gate ---------- */
+  const adminGate = document.getElementById("admin-gate");
+  const adminContent = document.getElementById("admin-content");
+  const adminPasswordInput = document.getElementById("admin-password");
+  const adminError = document.getElementById("admin-error");
+  const unlockBtn = document.getElementById("unlock-btn");
+
+  function tryUnlock(){
+    if (adminPasswordInput.value === ADMIN_CODE){
+      adminUnlocked = true;
+      adminGate.hidden = true;
+      adminContent.hidden = false;
+      adminError.textContent = "";
+      loadRoster();
+      refreshRegistrationToggleUI();
+    } else {
+      adminError.textContent = "Incorrect passcode. Try again.";
+      adminPasswordInput.value = "";
+      adminPasswordInput.focus();
+    }
+  }
+  unlockBtn.addEventListener("click", tryUnlock);
+  adminPasswordInput.addEventListener("keydown", (e) => { if (e.key === "Enter") tryUnlock(); });
+
+  /* ---------- Registration open/closed admin toggle ---------- */
+  async function refreshRegistrationToggleUI(){
+    const isOpen = await getRegistrationOpen();
+    const label = document.getElementById("reg-status-label");
+    const btn = document.getElementById("toggle-reg-btn");
+    label.textContent = isOpen ? "OPEN" : "CLOSED";
+    label.className = isOpen ? "reg-open" : "reg-closed";
+    btn.textContent = isOpen ? "Close Registration" : "Reopen Registration";
+    btn.dataset.current = isOpen ? "open" : "closed";
+  }
+  document.getElementById("toggle-reg-btn").addEventListener("click", async () => {
+    const btn = document.getElementById("toggle-reg-btn");
+    const currentlyOpen = btn.dataset.current === "open";
+    if (currentlyOpen){
+      const confirmed = confirm("Are you sure you want to close registration? People will no longer be able to register.");
+      if (!confirmed) return;
+    }
+    btn.disabled = true;
+    const ok = await setRegistrationOpen(!currentlyOpen);
+    btn.disabled = false;
+    if (ok){
+      refreshRegistrationToggleUI();
+    } else {
+      alert("Could not update registration status. Please try again.");
+    }
+  });
+
+  /* ---------- Payment Status gate (separate passcode) ---------- */
+  const paymentGateLabel = document.getElementById("payment-gate-label");
+  const paymentPasswordInput = document.getElementById("payment-password");
+  const paymentError = document.getElementById("payment-error");
+  const paymentUnlockBtn = document.getElementById("payment-unlock-btn");
+  const paymentSaveBtn = document.getElementById("payment-save-btn");
+
+  function tryPaymentUnlock(){
+    if (paymentPasswordInput.value === PAYMENT_CODE){
+      paymentUnlocked = true;
+      paymentPasswordInput.hidden = true;
+      paymentUnlockBtn.hidden = true;
+      paymentSaveBtn.hidden = false;
+      paymentGateLabel.textContent = "Registration Status editing is unlocked.";
+      paymentError.textContent = "";
+      loadRoster();
+    } else {
+      paymentError.textContent = "Incorrect code.";
+      paymentPasswordInput.value = "";
+      paymentPasswordInput.focus();
+    }
+  }
+  paymentUnlockBtn.addEventListener("click", tryPaymentUnlock);
+  paymentPasswordInput.addEventListener("keydown", (e) => { if (e.key === "Enter") tryPaymentUnlock(); });
+
+  paymentSaveBtn.addEventListener("click", () => {
+    paymentUnlocked = false;
+    paymentPasswordInput.value = "";
+    paymentPasswordInput.hidden = false;
+    paymentUnlockBtn.hidden = false;
+    paymentSaveBtn.hidden = true;
+    paymentGateLabel.textContent = "Registration Status is view-only. Enter the code to edit it.";
+    loadRoster();
+  });
+
+  document.getElementById("refresh-btn").addEventListener("click", loadRoster);
+
+  /* ---------- PDF export ---------- */
+  document.getElementById("export-pdf-btn").addEventListener("click", async () => {
+    const exportBtn = document.getElementById("export-pdf-btn");
+    exportBtn.disabled = true;
+    const originalLabel = exportBtn.textContent;
+    exportBtn.textContent = "Exporting...";
+    try{
+      const regs = await fetchAllRegistrations();
+      if (!window.jspdf || !window.jspdf.jsPDF){
+        throw new Error("PDF library not loaded");
+      }
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+      doc.setFontSize(14);
+      doc.text("CNL Kids Christmas Party \u2014 Roster", 14, 16);
+      doc.setFontSize(9);
+      doc.text("Petawawa Civic Centre (Upstairs) \u00b7 Sunday, November 29, 2026", 14, 22);
+
+      const body = regs.map(r => {
+        const parts = [];
+        if (r.adults) parts.push(r.adults + "A");
+        if (r.children) parts.push(r.children + "C");
+        return [
+          "",
+          r.name || "",
+          r.email || "",
+          parts.length ? parts.join(" / ") : "\u2014",
+          String(r.partySize || 0),
+          "$" + (r.total || 0).toFixed(2),
+          r.paymentDone === "Paid" ? "Paid" : "Payment pending review"
+        ];
+      });
+      const totalGuests = regs.reduce((s,r) => s + (r.partySize||0), 0);
+      const totalAdults = regs.reduce((s,r) => s + (r.adults||0), 0);
+      const totalChildren = regs.reduce((s,r) => s + (r.children||0), 0);
+      const totalAmount = regs.reduce((s,r) => s + (r.total||0), 0);
+
+      doc.autoTable({
+        head: [["Attendance","Name","Email","Tickets","Party Size","Total Amount","Payment"]],
+        body: body,
+        startY: 28,
+        styles: { fontSize: 8 },
+        headStyles: { fillColor: [179, 18, 42] },
+        columnStyles: { 0: { cellWidth: 20, halign: "center" } },
+        didDrawCell: function(data){
+          if (data.section === "body" && data.column.index === 0){
+            const size = 4.5;
+            const x = data.cell.x + (data.cell.width - size) / 2;
+            const y = data.cell.y + (data.cell.height - size) / 2;
+            doc.rect(x, y, size, size);
+          }
+        }
+      });
+
+      const finalY = (doc.lastAutoTable && doc.lastAutoTable.finalY) ? doc.lastAutoTable.finalY : 28;
+      doc.setFontSize(9);
+      doc.text(`Total registrations: ${regs.length}   Total attendees: ${totalGuests} (${totalAdults} Adults, ${totalChildren} Children)   Total ticket sales: $${totalAmount.toFixed(2)}`, 14, finalY + 10);
+
+      doc.save("cnl-kids-christmas-party-registrations.pdf");
+    }catch(err){
+      console.error("PDF export failed:", err);
+      alert("Could not export the PDF. Please try again.");
+    }finally{
+      exportBtn.disabled = false;
+      exportBtn.textContent = originalLabel;
+    }
+  });
+
+  /* ---------- Roster ---------- */
+  async function loadRoster(){
+    const wrap = document.getElementById("roster-wrap");
+    wrap.innerHTML = `<div class="empty-state"><p>Loading roster...</p></div>`;
+    const regs = await fetchAllRegistrations();
+
+    document.getElementById("stat-regs").textContent = regs.length;
+    const totalGuests = regs.reduce((s,r) => s + (r.partySize||0), 0);
+    const totalAdults = regs.reduce((s,r) => s + (r.adults||0), 0);
+    const totalChildren = regs.reduce((s,r) => s + (r.children||0), 0);
+    const totalAmount = regs.reduce((s,r) => s + (r.total||0), 0);
+    document.getElementById("stat-guests").textContent = totalGuests;
+    document.getElementById("stat-adults").textContent = totalAdults;
+    document.getElementById("stat-children").textContent = totalChildren;
+    document.getElementById("stat-total").textContent = "$" + totalAmount.toFixed(2);
+
+    if (regs.length === 0){
+      wrap.innerHTML = `<div class="empty-state">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M4 19V5a2 2 0 0 1 2-2h9l5 5v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z" stroke="currentColor" stroke-width="1.5"/></svg>
+        <p>No registrations yet. They'll appear here as guests confirm their e-transfer.</p>
+      </div>`;
+      return;
+    }
+
+    let rows = "";
+    regs.forEach(r => {
+      const paid = r.paymentDone === "Paid";
+      let paymentCell;
+      if (paymentUnlocked){
+        paymentCell = `<div class="status-cell">
+            <select class="payment-select ${paid ? 'is-paid' : 'is-notpaid'}" data-id="${r.id}">
+              <option value="Payment pending review" ${paid ? "" : "selected"}>Payment pending review</option>
+              <option value="Paid" ${paid ? "selected" : ""}>Paid</option>
+            </select>
+          </div>`;
+      } else {
+        paymentCell = `<div class="status-cell">
+            <span class="payment-locked ${paid ? 'is-paid' : 'is-notpaid'}">${paid ? "Paid" : "Payment pending review"}</span>
+          </div>`;
+      }
+      const breakdownParts = [];
+      if (r.adults) breakdownParts.push(r.adults + (r.adults === 1 ? " Adult" : " Adults"));
+      if (r.children) breakdownParts.push(r.children + (r.children === 1 ? " Child" : " Children"));
+      const breakdown = breakdownParts.length ? `<div class="party-breakdown">${breakdownParts.join(", ")}</div>` : "";
+
+      rows += `<tr data-id="${r.id}">
+        <td>${escapeHtml(r.name)}</td>
+        <td>${escapeHtml(r.email || "—")}</td>
+        <td>${r.partySize}${breakdown}</td>
+        <td class="amt">$${(r.total||0).toFixed(2)}</td>
+        <td>${paymentCell}</td>
+        <td>${paymentUnlocked ? `<button class="del-btn" data-id="${r.id}">Delete</button>` : ""}</td>
+      </tr>`;
+    });
+
+    wrap.innerHTML = `<table class="roster">
+      <thead><tr><th>Name</th><th>Email</th><th>Party Size</th><th>Total Amount</th><th>Registration Status</th><th></th></tr></thead>
+      <tbody>${rows}</tbody>
+    </table>`;
+
+    wrap.querySelectorAll(".payment-select").forEach(sel => {
+      sel.addEventListener("change", async () => {
+        sel.disabled = true;
+        const ok = await updatePaymentStatus(sel.dataset.id, sel.value);
+        sel.disabled = false;
+        sel.classList.toggle("is-paid", sel.value === "Paid");
+        sel.classList.toggle("is-notpaid", sel.value === "Payment pending review");
+        if (!ok){
+          sel.classList.remove("is-paid","is-notpaid");
+        }
+      });
+    });
+
+    wrap.querySelectorAll(".del-btn").forEach(btn => {
+      btn.addEventListener("click", async () => {
+        const confirmed = confirm("Are you sure you want to delete this entry? This cannot be undone.");
+        if (!confirmed) return;
+        btn.disabled = true;
+        btn.textContent = "...";
+        await deleteRegistration(btn.dataset.id);
+        loadRoster();
+      });
+    });
+  }
+
+  function escapeHtml(str){
+    const div = document.createElement("div");
+    div.textContent = str || "";
+    return div.innerHTML;
+  }
+})();
+</script>
+</body>
+</html>
