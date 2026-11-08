@@ -50,3 +50,29 @@ select{background:#3E0A13;color:var(--ink);border:1px solid var(--line);border-r
 .stats{margin-bottom:16px}
 .num{font:700 26px Georgia,serif;color:var(--gold)}
 .scroll{overflow-x:auto;margin-bottom:12px}
+
+/* ---- navigation ---- */
+header.site .wrap{align-items:center}
+.mainnav{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.mainnav .navlink{margin-left:0;padding:8px 12px;border-radius:8px}
+.navbtn{font:inherit;font-size:15px;color:var(--soft);background:transparent;border:1px solid transparent;border-radius:8px;padding:8px 14px;cursor:pointer;text-decoration:none;display:inline-block}
+.navbtn:hover{color:var(--gold);border-color:var(--line)}
+.navbtn.solid{background:var(--gold);color:#2a0a10;font-weight:700}
+.navbtn.solid:hover{color:#2a0a10;filter:brightness(1.08)}
+.dropdown{position:relative}
+.menu{position:absolute;right:0;top:calc(100% + 6px);min-width:260px;margin:0;padding:6px;list-style:none;background:var(--panel);border:1px solid var(--line);border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,.25);z-index:20}
+.menu a{display:block;margin:0;padding:10px 12px;border-radius:8px;color:var(--ink);text-decoration:none;font-size:15px}
+.menu a:hover{background:var(--panel2);color:var(--gold)}
+
+/* ---- light (beige) theme, used by the home page ---- */
+body.light{--bg:#F4ECDA;--panel:#FFFDF7;--panel2:#EDE2C8;--ink:#2B2118;--soft:#5E5043;--gold:#0B5A8C;--line:rgba(11,90,140,.25)}
+body.light header.site{background:#FFFDF7;border-bottom:1px solid var(--line)}
+body.light .brand{color:#0B3F63}
+body.light .navbtn.solid{background:#0B5A8C;color:#fff}
+body.light .navbtn.solid:hover{color:#fff}
+body.light .event{border-color:#0B5A8C;box-shadow:0 2px 10px rgba(11,63,99,.08)}
+body.light .event:hover{background:#FFF7E3}
+body.light .card{box-shadow:0 2px 10px rgba(11,63,99,.06)}
+body.light .menu{box-shadow:0 10px 30px rgba(43,33,24,.18)}
+.logo{display:block;margin:0 auto 14px;width:200px;height:200px;max-width:60vw;height:auto}
+.hero{padding-top:40px}

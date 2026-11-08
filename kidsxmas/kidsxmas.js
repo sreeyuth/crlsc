@@ -85,7 +85,7 @@ if (backend.isLive){ const b = document.getElementById("demo-banner"); if (b) b.
   const copyEmailBtn = document.getElementById("copy-email-btn");
   if (copyEmailBtn){
     copyEmailBtn.addEventListener("click", async () => {
-      const email = "l.kinghorn87@gmail.com";
+      const email = "crsocclb@cnl.ca";
       try{
         await navigator.clipboard.writeText(email);
       }catch(err){
