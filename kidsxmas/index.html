@@ -19,7 +19,17 @@
       <svg viewBox="0 0 32 32" fill="none"><path d="M16 4 L20 13 L29 13 L21.5 18.5 L24.5 28 L16 22 L7.5 28 L10.5 18.5 L3 13 L12 13 Z" fill="currentColor"/></svg>
       Chalk River Social Club
     </div>
-    <div class="tab-group"><a class="tab-btn" href="/">Home</a><a class="tab-btn active" href="/kidsxmas/">Kids Xmas Party</a></div>
+    <nav class="mainnav" aria-label="Main">
+      <a href="/" class="navlink">Home</a>
+      <div class="dropdown">
+        <button type="button" class="navbtn current" id="events-btn" aria-haspopup="true" aria-expanded="false">Events <span aria-hidden="true">▾</span></button>
+        <ul class="menu" id="events-menu" hidden>
+          <li><a href="/kidsxmas/">CNL Kids Christmas Party</a></li>
+        </ul>
+      </div>
+      <a href="/privacy/" class="navlink">Privacy</a>
+      <a href="/dashboard/" class="navbtn solid">Dashboard</a>
+    </nav>
   </nav>
   <svg class="lights-garland" viewBox="0 0 1400 36" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
     <defs>
@@ -155,5 +165,6 @@
 
 <script src="garland.js"></script>
 <script type="module" src="kidsxmas.js"></script>
+<script type="module" src="/assets/nav.js"></script>
 </body>
 </html>
