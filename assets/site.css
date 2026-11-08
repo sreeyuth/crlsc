@@ -88,3 +88,20 @@ body.light .gate{box-shadow:0 2px 10px rgba(11,63,99,.08)}
 .gate input:-webkit-autofill,.gate input:-webkit-autofill:focus{-webkit-text-fill-color:var(--ink);caret-color:var(--ink);box-shadow:0 0 0 1000px #FFFDF7 inset;border:1px solid var(--line)}
 .gate input:focus-visible,.gate button:focus-visible{outline:3px solid #0B5A8C;outline-offset:2px}
 body.light .gate button:hover{filter:brightness(1.1)}
+
+/* ---- dashboard buttons ---- */
+.statusline{font-size:16px}
+.state-open{color:#1B7F3B}
+.state-closed{color:#C0262D}
+.btn-s,.btn-p,.btn-close,.btn-open,.btn-danger{font:inherit;font-size:14px;font-weight:600;border-radius:8px;padding:9px 16px;cursor:pointer;border:1.5px solid transparent}
+.btn-s{background:#FFFDF7;color:#0B5A8C;border-color:#0B5A8C}
+.btn-s:hover{background:#E6F0F7}
+.btn-p{background:#0B5A8C;color:#fff;border-color:#0B5A8C}
+.btn-p:hover{background:#094a73}
+.btn-close{background:#C0262D;color:#fff;border-color:#C0262D}
+.btn-close:hover{background:#a01f25}
+.btn-open{background:#1B7F3B;color:#fff;border-color:#1B7F3B}
+.btn-open:hover{background:#156b30}
+.btn-danger{background:#FFFDF7;color:#C0262D;border-color:#C0262D;padding:6px 12px}
+.btn-danger:hover{background:#FBE9EA}
+.btn-s:focus-visible,.btn-p:focus-visible,.btn-close:focus-visible,.btn-open:focus-visible,.btn-danger:focus-visible{outline:3px solid #0B5A8C;outline-offset:2px}

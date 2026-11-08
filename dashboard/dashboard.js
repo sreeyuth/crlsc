@@ -9,7 +9,7 @@ let eventId = Object.keys(EVENTS)[0];
 let fails = 0, lockedUntil = 0;
 
 function td(text){ const c = document.createElement("td"); c.textContent = text; return c; }
-function btn(text, fn){ const b = document.createElement("button"); b.className = "btn-s"; b.textContent = text; b.addEventListener("click", fn); return b; }
+function btn(text, fn, cls){ const b = document.createElement("button"); b.className = cls || "btn-s"; b.textContent = text; b.addEventListener("click", fn); return b; }
 
 /* ---------- Sign-in ---------- */
 if (!be.isLive){
@@ -54,8 +54,12 @@ async function refresh(){
 }
 async function updateOpen(){
   const open = await be.registrationOpen(eventId);
-  $("open-label").textContent = "Registration is " + (open ? "open" : "closed");
+  const word = document.createElement("strong");
+  word.textContent = open ? "open" : "closed";
+  word.className = open ? "state-open" : "state-closed";
+  $("open-label").replaceChildren("Registration is ", word);
   $("toggle-open").textContent = open ? "Close registration" : "Open registration";
+  $("toggle-open").className = open ? "btn-close" : "btn-open";
   $("toggle-open").dataset.open = String(open);
 }
 $("toggle-open").addEventListener("click", async () => {
@@ -90,7 +94,7 @@ function renderRegs(){
     dc.append(btn("Delete", async () => {
       if (!confirm("Delete this registration permanently?")) return;
       await be.deleteRegistration(r.id); refresh();
-    }));
+    }, "btn-danger"));
     tr.append(td(r.name), td(r.email), td(r.adults), td(r.children), td("$" + Number(r.total).toFixed(2)), sc, td(fmt(r.createdAt)), td(fmt(r.deleteAt)), dc);
     body.append(tr);
   });
@@ -106,7 +110,7 @@ function renderSubs(){
     dc.append(btn("Remove", async () => {
       if (!confirm("Remove " + s.email + " from the email list?")) return;
       await be.removeSubscriber(s.email); refresh();
-    }));
+    }, "btn-danger"));
     tr.append(td(s.email), td(fmt(s.consentAt)), td(EVENTS[s.source] ? EVENTS[s.source].name : s.source), dc);
     body.append(tr);
   });
@@ -137,6 +141,33 @@ $("export-regs").addEventListener("click", () => {
   const rows = regs.filter(r => r.eventId === eventId);
   download(eventId + "-registrations.csv", [["Name","Email","Adults","Children","Total","Status","Registered","Auto-deletes"]].concat(
     rows.map(r => [r.name, r.email, r.adults, r.children, r.total, r.status, fmt(r.createdAt), fmt(r.deleteAt)])));
+});
+$("export-pdf").addEventListener("click", () => {
+  const ev = EVENTS[eventId];
+  const rows = regs.filter(r => r.eventId === eventId).sort((a, b) => a.name.localeCompare(b.name));
+  if (!window.jspdf){ alert("PDF export is not available."); return; }
+  const doc = new window.jspdf.jsPDF({ unit: "pt", format: "letter" });
+  doc.setFontSize(16); doc.text(ev.name + " - Registration roster", 40, 44);
+  doc.setFontSize(10);
+  const adults = rows.reduce((n, r) => n + (r.adults || 0), 0);
+  const kids = rows.reduce((n, r) => n + (r.children || 0), 0);
+  const total = rows.reduce((n, r) => n + (r.total || 0), 0);
+  doc.text(ev.date + "  |  " + rows.length + " registrations  |  " + adults + " adults, " + kids + " children  |  $" + total.toFixed(2), 40, 62);
+  doc.autoTable({
+    startY: 76,
+    head: [["Name", "Adults", "Children", "Total", "Status", "Attended"]],
+    body: rows.map(r => [r.name, r.adults, r.children, "$" + Number(r.total).toFixed(2), r.status, ""]),
+    styles: { fontSize: 10, cellPadding: 5, minCellHeight: 22 },
+    headStyles: { fillColor: [11, 90, 140] },
+    columnStyles: { 5: { cellWidth: 60 } },
+    didDrawCell: d => {
+      if (d.section === "body" && d.column.index === 5){
+        const s = 11;
+        doc.setDrawColor(60); doc.rect(d.cell.x + (d.cell.width - s) / 2, d.cell.y + (d.cell.height - s) / 2, s, s);
+      }
+    }
+  });
+  doc.save(eventId + "-roster.pdf");
 });
 $("export-subs").addEventListener("click", () => {
   download("email-list.csv", [["Email","Consent given","Source"]].concat(subs.map(s => [s.email, fmt(s.consentAt), s.source])));
