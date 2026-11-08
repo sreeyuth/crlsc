@@ -7,10 +7,10 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' https://www.gstatic.com; style-src 'self'; img-src 'self' data:; connect-src https://firestore.googleapis.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com; form-action 'none'; base-uri 'none'">
 <meta name="referrer" content="no-referrer">
 <meta name="robots" content="noindex, nofollow, noarchive">
-<link rel="stylesheet" href="/assets/site.css?v=9">
+<link rel="stylesheet" href="/assets/site.css?v=11">
 </head>
 <body class="light">
-<header class="site"><div class="wrap">
+<header class="site"><div class="wrap wide">
   <a class="brand" href="/">Chalk River Social Club</a>
   <nav class="mainnav" aria-label="Main">
     <a href="/" class="navlink">Home</a>
@@ -18,13 +18,14 @@
       <button type="button" class="navbtn" id="events-btn" aria-haspopup="true" aria-expanded="false">Events <span aria-hidden="true">▾</span></button>
       <ul class="menu" id="events-menu" hidden>
         <li><a href="/kidsxmas/">CNL Kids Christmas Party</a></li>
+        <li><a href="/gala/">CNL Christmas Gala</a></li>
       </ul>
     </div>
     <a href="/privacy/" class="navlink">Privacy</a>
     <a href="/dashboard/" class="navbtn solid">Dashboard</a>
   </nav>
 </div></header>
-<main class="wrap">
+<main class="wrap wide">
   <div class="gate" id="gate">
     <p id="gate-msg">Authorized users only.</p>
     <input type="email" id="email" autocomplete="username" placeholder="Email" aria-label="Email" class="plain">
@@ -59,7 +60,7 @@
       </div>
       <div class="cards stats" id="stats"></div>
       <div class="scroll"><table>
-        <thead><tr><th>Name</th><th>Email</th><th>Adults</th><th>Children</th><th>Total</th><th>Status</th><th>Registered</th><th>Auto-deletes</th><th></th></tr></thead>
+        <thead id="regs-head"></thead>
         <tbody id="regs-body"></tbody>
       </table></div>
       <p class="updated">Registration details are deleted automatically 30 days after the event date.</p>

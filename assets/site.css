@@ -114,3 +114,6 @@ body.light .hero{padding-bottom:10px}
 .userbox{display:flex;align-items:center;gap:10px}
 #content .notice{margin:20px 0 0}
 #content .notice[hidden]{display:none}
+.event + .event{margin-top:14px}
+.wrap.wide{max-width:1180px}
+.stats{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}

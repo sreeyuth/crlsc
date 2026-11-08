@@ -73,29 +73,50 @@ $("refresh").addEventListener("click", refresh);
 /* ---------- Render ---------- */
 function renderAll(){ renderRegs(); renderSubs(); }
 function renderRegs(){
+  const ev = EVENTS[eventId];
   const rows = regs.filter(r => r.eventId === eventId).sort((a,b) => b.createdAt - a.createdAt);
-  const sum = k => rows.reduce((n, r) => n + (r[k] || 0), 0);
+  const sum = k => rows.reduce((n, r) => n + (Number(r[k]) || 0), 0);
+  const headcount = rows.reduce((n, r) => n + ev.headcount(r), 0);
   const stats = $("stats"); stats.replaceChildren();
-  [["Registrations", rows.length], ["Adults", sum("adults")], ["Children", sum("children")], ["Total ticket sales", "$" + sum("total").toFixed(2)]].forEach(([l, v]) => {
+  const pickedUp = rows.filter(r => r.ticketStatus === "Picked up").length;
+  const cards = [["Registrations", rows.length], ["Total attendees", headcount]]
+    .concat(ev.counts.map(c => [c.label, sum(c.key)]))
+    .concat([["Tickets picked up", pickedUp + " of " + rows.length]])
+    .concat([["Total ticket sales", "$" + sum("total").toFixed(2)]]);
+  cards.forEach(([l, v]) => {
     const c = document.createElement("div"); c.className = "card";
     const n = document.createElement("div"); n.className = "num"; n.textContent = v;
     const t = document.createElement("div"); t.className = "updated"; t.textContent = l;
     c.append(n, t); stats.append(c);
   });
+  const heads = ["Name", "Email"].concat(ev.counts.map(c => c.label), ev.extras.map(x => x.label), ["Total", "Status", "Tickets", "Registered", "Auto-deletes", ""]);
+  const tr0 = document.createElement("tr");
+  heads.forEach(t => { const th = document.createElement("th"); th.textContent = t; tr0.append(th); });
+  $("regs-head").replaceChildren(tr0);
   const body = $("regs-body"); body.replaceChildren();
-  if (!rows.length){ const tr = document.createElement("tr"); const c = td("No registrations."); c.colSpan = 9; tr.append(c); body.append(tr); return; }
+  if (!rows.length){ const tr = document.createElement("tr"); const c = td("No registrations."); c.colSpan = heads.length; tr.append(c); body.append(tr); return; }
   rows.forEach(r => {
     const tr = document.createElement("tr");
     const sel = document.createElement("select");
     ["Not paid", "Paid"].forEach(o => { const op = document.createElement("option"); op.textContent = o; if (r.status === o) op.selected = true; sel.append(op); });
     sel.addEventListener("change", async () => { try { await be.updateStatus(r.id, sel.value); r.status = sel.value; } catch (e){ sel.value = r.status; } });
     const sc = document.createElement("td"); sc.append(sel);
+    const tsel = document.createElement("select");
+    ["Not picked up", "Picked up"].forEach(o => { const op = document.createElement("option"); op.textContent = o; if ((r.ticketStatus || "Not picked up") === o) op.selected = true; tsel.append(op); });
+    tsel.addEventListener("change", async () => {
+      const prev = r.ticketStatus || "Not picked up";
+      try { await be.updateTicketStatus(r.id, tsel.value); r.ticketStatus = tsel.value; renderRegs(); } catch (e){ tsel.value = prev; }
+    });
+    const tc = document.createElement("td"); tc.append(tsel);
     const dc = document.createElement("td");
     dc.append(btn("Delete", async () => {
       if (!confirm("Delete this registration permanently?")) return;
       await be.deleteRegistration(r.id); refresh();
     }, "btn-danger"));
-    tr.append(td(r.name), td(r.email), td(r.adults), td(r.children), td("$" + Number(r.total).toFixed(2)), sc, td(fmt(r.createdAt)), td(fmt(r.deleteAt)), dc);
+    tr.append(td(r.name), td(r.email));
+    ev.counts.forEach(c => tr.append(td(r[c.key] == null ? "" : r[c.key])));
+    ev.extras.forEach(x => tr.append(td(r[x.key] || "-")));
+    tr.append(td("$" + Number(r.total).toFixed(2)), sc, tc, td(fmt(r.createdAt)), td(fmt(r.deleteAt)), dc);
     body.append(tr);
   });
 }
@@ -138,30 +159,33 @@ function download(name, rows){
   a.download = name; document.body.append(a); a.click(); a.remove();
 }
 $("export-regs").addEventListener("click", () => {
+  const ev = EVENTS[eventId];
   const rows = regs.filter(r => r.eventId === eventId);
-  download(eventId + "-registrations.csv", [["Name","Email","Adults","Children","Total","Status","Registered","Auto-deletes"]].concat(
-    rows.map(r => [r.name, r.email, r.adults, r.children, r.total, r.status, fmt(r.createdAt), fmt(r.deleteAt)])));
+  const head = ["Name", "Email"].concat(ev.counts.map(c => c.label), ev.extras.map(x => x.label), ["Total", "Status", "Tickets", "Registered", "Auto-deletes"]);
+  download(eventId + "-registrations.csv", [head].concat(rows.map(r =>
+    [r.name, r.email].concat(ev.counts.map(c => r[c.key]), ev.extras.map(x => r[x.key] || ""), [r.total, r.status, r.ticketStatus || "Not picked up", fmt(r.createdAt), fmt(r.deleteAt)]))));
 });
 $("export-pdf").addEventListener("click", () => {
   const ev = EVENTS[eventId];
   const rows = regs.filter(r => r.eventId === eventId).sort((a, b) => a.name.localeCompare(b.name));
   if (!window.jspdf){ alert("PDF export is not available."); return; }
-  const doc = new window.jspdf.jsPDF({ unit: "pt", format: "letter" });
+  const head = ["Name"].concat(ev.counts.map(c => c.label), ev.extras.map(x => x.label), ["Total", "Status", "Tickets", "Attended"]);
+  const attendedCol = head.length - 1;
+  const doc = new window.jspdf.jsPDF({ unit: "pt", format: "letter", orientation: head.length > 7 ? "landscape" : "portrait" });
   doc.setFontSize(16); doc.text(ev.name + " - Registration roster", 40, 44);
   doc.setFontSize(10);
-  const adults = rows.reduce((n, r) => n + (r.adults || 0), 0);
-  const kids = rows.reduce((n, r) => n + (r.children || 0), 0);
+  const people = rows.reduce((n, r) => n + ev.headcount(r), 0);
   const total = rows.reduce((n, r) => n + (r.total || 0), 0);
-  doc.text(ev.date + "  |  " + rows.length + " registrations  |  " + adults + " adults, " + kids + " children  |  $" + total.toFixed(2), 40, 62);
+  doc.text(ev.date + "  |  " + rows.length + " registrations  |  " + people + " attendees  |  $" + total.toFixed(2), 40, 62);
   doc.autoTable({
     startY: 76,
-    head: [["Name", "Adults", "Children", "Total", "Status", "Attended"]],
-    body: rows.map(r => [r.name, r.adults, r.children, "$" + Number(r.total).toFixed(2), r.status, ""]),
+    head: [head],
+    body: rows.map(r => [r.name].concat(ev.counts.map(c => r[c.key]), ev.extras.map(x => r[x.key] || "-"), ["$" + Number(r.total).toFixed(2), r.status, r.ticketStatus || "Not picked up", ""])),
     styles: { fontSize: 10, cellPadding: 5, minCellHeight: 22 },
     headStyles: { fillColor: [11, 90, 140] },
-    columnStyles: { 5: { cellWidth: 60 } },
+    columnStyles: { [attendedCol]: { cellWidth: 60 } },
     didDrawCell: d => {
-      if (d.section === "body" && d.column.index === 5){
+      if (d.section === "body" && d.column.index === attendedCol){
         const s = 11;
         doc.setDrawColor(60); doc.rect(d.cell.x + (d.cell.width - s) / 2, d.cell.y + (d.cell.height - s) / 2, s, s);
       }

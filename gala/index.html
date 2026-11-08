@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CNL Christmas Gala 2026 · Chalk River Social Club</title>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' https://www.gstatic.com; style-src 'self'; img-src 'self' data:; connect-src https://firestore.googleapis.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="gala.css">
+<link rel="stylesheet" href="extras.css">
+</head>
+<body>
+<div class="preview-banner" id="demo-banner" role="note"><strong>Preview only.</strong> This page is a demonstration for IT review. No registrations are collected or stored.</div>
+
+<header class="hero">
+  <nav class="tabs">
+    <div class="brandmark">
+      <svg viewBox="0 0 32 32" fill="none"><path d="M16 4 L20 13 L29 13 L21.5 18.5 L24.5 28 L16 22 L7.5 28 L10.5 18.5 L3 13 L12 13 Z" fill="currentColor"/></svg>
+      Chalk River Social Club
+    </div>
+    <nav class="mainnav" aria-label="Main">
+      <a href="/" class="navlink">Home</a>
+      <div class="dropdown">
+        <button type="button" class="navbtn current" id="events-btn" aria-haspopup="true" aria-expanded="false">Events <span aria-hidden="true">▾</span></button>
+        <ul class="menu" id="events-menu" hidden>
+          <li><a href="/kidsxmas/">CNL Kids Christmas Party</a></li>
+          <li><a href="/gala/">CNL Christmas Gala</a></li>
+        </ul>
+      </div>
+      <a href="/privacy/" class="navlink">Privacy</a>
+      <a href="/dashboard/" class="navbtn solid">Dashboard</a>
+    </nav>
+  </nav>
+  <svg class="lights-garland" viewBox="0 0 1400 36" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <defs>
+      <filter id="bulbGlow" x="-100%" y="-100%" width="300%" height="300%">
+        <feGaussianBlur stdDeviation="3.2" result="blur"/>
+        <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+      </filter>
+    </defs>
+    <line x1="0" y1="3" x2="1400" y2="3" stroke="#4a3a20" stroke-width="1.5" opacity="0.7"/>
+    <g id="garland-bulbs"></g>
+  </svg>
+</header>
+
+<main>
+  <section id="register-panel" class="panel active">
+    <div class="landing-grid">
+      <div class="details-col">
+        <div class="eyebrow">CR Social Club Presents</div>
+        <h1>🎄 <em>CNL Christmas Gala</em> 2026 🎄</h1>
+        <p class="tagline">Enjoy an evening of dinner, dancing and socializing!</p>
+        <div class="event-meta">
+          <div class="row"><span class="tag">Date</span> Saturday, December 12, 2026</div>
+          <div class="row"><span class="tag">Where</span>
+            <span>Chalk River Area Lions Hall<br>
+            <a class="map-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Chalk+River+Area+Lions+Hall">View on map</a></span>
+          </div>
+          <div class="row"><span class="tag">Schedule</span> Doors open 5:00 PM · Cocktails 5:30 PM · Hors d'oeuvres 5:50 PM · Dinner 6:30 PM · Late lunch</div>
+        </div>
+
+        <div class="menu-box">
+          <h3>🎉 Evening Highlights</h3>
+          <ul>
+            <li>Cocktails &amp; Hors d'oeuvres</li>
+            <li>Roast Beef &amp; Roast Turkey Dinner</li>
+            <li>Late Lunch</li>
+            <li>Catering by Ullrich's</li>
+            <li>DJ: 2 Mics Mobile DJ Service</li>
+            <li>Dancing &amp; Socializing All Night</li>
+          </ul>
+        </div>
+
+        <p class="age-note-title">Notes:</p>
+        <ol class="age-note">
+          <li>This is an adult event.</li>
+          <li>This event is open to CNL staff and contractors, and their family and friends.</li>
+          <li>A vegetarian option is available — please request it in advance using the Dietary Restrictions field below.</li>
+          <li>Tickets can be picked up in one of two ways:
+            <ul class="age-subnote">
+              <li>On site at CRL before the event from Gail Magill (B1565) or Sreeyuth Lal (B469)</li>
+              <li>At the door</li>
+            </ul>
+          </li>
+        </ol>
+      </div>
+
+      <div class="register-col">
+        <div class="ticket-stub" id="ticket-stub">
+          <div id="form-view">
+            <h2>Registration</h2>
+
+            <form id="reg-form" novalidate>
+              <div class="field">
+                <label for="reg-name">Name</label>
+                <input type="text" id="reg-name" placeholder="Your full name" autocomplete="name" maxlength="100" required>
+              </div>
+
+              <div class="field">
+                <label for="reg-email">Email</label>
+                <input type="email" id="reg-email" placeholder="you@example.com" autocomplete="email" maxlength="254" required>
+              </div>
+
+              <div class="field ticket-types">
+                <label>Tickets</label>
+                <p class="ticket-note">Choose individual tickets, a full table of 10, or both.</p>
+                <div class="ticket-row">
+                  <span class="ticket-name">Individual Ticket</span>
+                  <span class="ticket-price">$50</span>
+                  <select id="reg-individual" class="ticket-select"></select>
+                </div>
+                <div class="ticket-row">
+                  <span class="ticket-name">Reserved Table of 10</span>
+                  <span class="ticket-price">$500</span>
+                  <select id="reg-table" class="ticket-select"></select>
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="reg-pickup">Ticket pickup (see Notes)</label>
+                <select id="reg-pickup" class="pickup-select">
+                  <option value="On site">On site</option>
+                  <option value="At the door">At the door</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label for="reg-dietary">Dietary Restrictions</label>
+                <input type="text" id="reg-dietary" placeholder="e.g. vegetarian option, allergies (optional)" maxlength="200">
+              </div>
+
+              <div class="divider-row"></div>
+
+              <div class="total-box">
+                <span class="label">Total amount</span>
+                <span class="amount mono" id="total-amount">$0.00</span>
+              </div>
+
+              <div class="etransfer-note">
+                E-transfer <strong id="etransfer-amount">$0.00</strong> to CR Social Club at
+                <strong>crsocclb@cnl.ca</strong>
+                <button type="button" class="copy-btn" id="copy-email-btn" aria-label="Copy email address to clipboard">Copy</button>
+                and <strong class="emphasis-underline">return to this page</strong> to complete your registration.
+              </div>
+
+              <div class="field">
+                <fieldset>
+                  <legend>Have you done the e-transfer?</legend>
+                  <button type="button" class="confirm-toggle" id="etransfer-confirm-btn" aria-pressed="false">
+                    <span class="check-circle" aria-hidden="true"></span>
+                    Yes, I have completed the e-transfer
+                  </button>
+                </fieldset>
+              </div>
+
+              <div class="consent-block">
+                <label class="consent-row">
+                  <input type="checkbox" id="consent-privacy" required>
+                  <span>I consent to my submitted data being collected and stored as outlined in the <a href="/privacy/" target="_blank" rel="noopener">Privacy Policy</a>. <span class="optional-tag required-tag">(required)</span></span>
+                </label>
+                <label class="consent-row">
+                  <input type="checkbox" id="consent-emails">
+                  <span>I agree to be e-mailed about future Social Club events <span class="optional-tag">(optional)</span></span>
+                </label>
+              </div>
+
+              <button type="submit" class="submit-btn" id="submit-btn" disabled>Complete Registration</button>
+              <p class="helper-text" id="helper-text">Complete the e-transfer, then confirm above, to activate your submission.</p>
+            </form>
+          </div>
+
+          <div id="confirm-view" class="confirmation" hidden>
+            <svg viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="30" fill="#D4AF37"/><path d="M20 33 L28 41 L45 23" stroke="#0B0705" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+            <h3>Thank you!</h3>
+            <p>Your spot is reserved. Please make sure to pick up the tickets using your selected option. See you at the Gala!</p>
+            <button type="button" id="register-another">Register another party</button>
+          </div>
+
+          <div id="closed-view" class="confirmation" hidden>
+            <h3>Registration is now closed</h3>
+            <p>Thanks for your interest — registration for this event has closed. For questions, contact the CNL CR Social Club at <a href="mailto:crsocclb@cnl.ca">crsocclb@cnl.ca</a> or text 613-401-5142.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>CNL CR Social Club &middot; 2026 Christmas Gala &middot; Chalk River Area Lions Hall &middot; Questions? Contact <a href="mailto:crsocclb@cnl.ca">crsocclb@cnl.ca</a> or text 613-401-5142 &middot; <a href="/privacy/">Privacy Policy</a></footer>
+
+<script src="garland.js"></script>
+<script type="module" src="gala.js"></script>
+<script type="module" src="/assets/nav.js"></script>
+</body>
+</html>
