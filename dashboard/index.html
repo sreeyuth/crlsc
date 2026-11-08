@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard · Chalk River Social Club</title>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' https://www.gstatic.com; style-src 'self'; img-src 'self' data:; connect-src https://firestore.googleapis.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a class="brand" href="/">★ Chalk River Social Club</a>
+  <nav><a href="/">Home</a><a href="/privacy/">Privacy</a></nav>
+</div></header>
+<main class="wrap">
+  <div class="gate" id="gate">
+    <h1 class="small">Organizer sign-in</h1>
+    <p id="gate-msg">Authorized organizers only.</p>
+    <input type="email" id="email" autocomplete="username" placeholder="Email" aria-label="Email" class="plain">
+    <input type="password" id="pw" autocomplete="current-password" placeholder="Password" aria-label="Password" class="plain">
+    <button id="go">Sign in</button>
+    <div class="err" id="err"></div>
+  </div>
+
+  <div id="content" hidden>
+    <div class="topbar">
+      <h1 class="top">Dashboard</h1>
+      <div><span id="who" class="updated"></span> <button class="btn-s" id="signout">Sign out</button></div>
+    </div>
+    <p class="notice" id="mode-note" hidden>Demo mode: sample data only, stored in this browser tab. Nothing is sent anywhere.</p>
+    <p class="notice" id="denied" hidden>You are signed in but not on the organizer list, so no data can be shown.</p>
+
+    <div class="tabs2" role="tablist">
+      <button class="tab2 active" data-tab="regs" role="tab">Registrations</button>
+      <button class="tab2" data-tab="subs" role="tab">Email list</button>
+    </div>
+
+    <section id="tab-regs">
+      <div class="toolbar">
+        <label>Event <select id="event-select"></select></label>
+        <span id="open-label"></span>
+        <button class="btn-s" id="toggle-open">…</button>
+        <button class="btn-s" id="export-regs">Export CSV</button>
+        <button class="btn-s" id="refresh">Refresh</button>
+      </div>
+      <div class="cards stats" id="stats"></div>
+      <div class="scroll"><table>
+        <thead><tr><th>Name</th><th>Email</th><th>Adults</th><th>Children</th><th>Total</th><th>Status</th><th>Registered</th><th>Auto-deletes</th><th></th></tr></thead>
+        <tbody id="regs-body"></tbody>
+      </table></div>
+      <p class="updated">Registration details are deleted automatically 30 days after the event date.</p>
+    </section>
+
+    <section id="tab-subs" hidden>
+      <div class="toolbar">
+        <strong id="subs-count">0 subscribers</strong>
+        <button class="btn-s" id="copy-subs">Copy all emails</button>
+        <button class="btn-s" id="export-subs">Export CSV</button>
+      </div>
+      <div class="scroll"><table>
+        <thead><tr><th>Email</th><th>Consent given</th><th>Source event</th><th></th></tr></thead>
+        <tbody id="subs-body"></tbody>
+      </table></div>
+      <p class="updated">Emails only, with no names, for people who agreed to hear about future events. Every message you send must include an unsubscribe option; use Remove here when someone unsubscribes.</p>
+    </section>
+  </div>
+</main>
+<footer class="site"><div class="wrap">© 2026 Chalk River Social Club · <a href="/privacy/">Privacy Policy</a></div></footer>
+<script type="module" src="dashboard.js"></script>
+</body>
+</html>
