@@ -120,3 +120,12 @@ body.light .hero{padding-bottom:10px}
 select.sel-good{background:#1B7F3B;color:#fff;border-color:#1B7F3B;font-weight:600}
 select.sel-good option{background:#fff;color:#2B2118}
 body.light select.sel-good{background:#1B7F3B;color:#fff;border-color:#1B7F3B;font-weight:600}
+
+/* ---- header: identical size and position on every page ---- */
+html{scrollbar-gutter:stable}
+header.site .wrap,header.site .wrap.wide{max-width:1200px;padding:0 24px;min-height:72px}
+.brand{font-size:20px;line-height:1.2}
+.mainnav .navlink,.navbtn{font-size:15px;padding:8px 14px;border-radius:8px;line-height:1.2}
+.mainnav a,.mainnav button{margin-left:0}
+.mainnav .navbtn.solid{font-weight:700}
+.mainnav .navlink{border:1px solid transparent}

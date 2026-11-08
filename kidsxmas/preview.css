@@ -17,3 +17,17 @@
 .consent-row a{color:#F0D77B;text-decoration:underline}
 .consent-row a:hover{color:#fff}
 .required-tag{color:#F0D77B}
+
+/* header: same size and position as the other pages */
+html{scrollbar-gutter:stable}
+nav.tabs{max-width:1200px;padding:0 24px;min-height:72px}
+.brandmark{font:700 20px/1.2 Georgia,serif}
+.brandmark svg{display:none}
+.mainnav .navlink,.mainnav .navbtn{font-size:15px;padding:8px 14px;border-radius:8px;line-height:1.2}
+/* demo banner sits at the bottom so it never pushes the header down */
+.preview-banner{position:fixed;left:0;right:0;bottom:0;z-index:50;box-shadow:0 -2px 10px rgba(0,0,0,.25)}
+body:has(#demo-banner){padding-bottom:48px}
+.brandmark{letter-spacing:normal;gap:0}
+.mainnav{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.mainnav a,.mainnav button{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-weight:400;letter-spacing:normal;text-transform:none;margin-left:0}
+.mainnav .navbtn.solid{font-weight:700}
