@@ -117,3 +117,6 @@ body.light .hero{padding-bottom:10px}
 .event + .event{margin-top:14px}
 .wrap.wide{max-width:1180px}
 .stats{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+select.sel-good{background:#1B7F3B;color:#fff;border-color:#1B7F3B;font-weight:600}
+select.sel-good option{background:#fff;color:#2B2118}
+body.light select.sel-good{background:#1B7F3B;color:#fff;border-color:#1B7F3B;font-weight:600}

@@ -9,6 +9,7 @@ let eventId = Object.keys(EVENTS)[0];
 let fails = 0, lockedUntil = 0;
 
 function td(text){ const c = document.createElement("td"); c.textContent = text; return c; }
+function mark(sel, good){ sel.classList.toggle("sel-good", sel.value === good); }
 function btn(text, fn, cls){ const b = document.createElement("button"); b.className = cls || "btn-s"; b.textContent = text; b.addEventListener("click", fn); return b; }
 
 /* ---------- Sign-in ---------- */
@@ -89,7 +90,7 @@ function renderRegs(){
     const t = document.createElement("div"); t.className = "updated"; t.textContent = l;
     c.append(n, t); stats.append(c);
   });
-  const heads = ["Name", "Email"].concat(ev.counts.map(c => c.label), ev.extras.map(x => x.label), ["Total", "Status", "Tickets", "Registered", "Auto-deletes", ""]);
+  const heads = ["Name", "Email"].concat(ev.counts.map(c => c.label), ev.extras.map(x => x.label), ["Total", "Payment", "Tickets", "Registered", "Auto-deletes", ""]);
   const tr0 = document.createElement("tr");
   heads.forEach(t => { const th = document.createElement("th"); th.textContent = t; tr0.append(th); });
   $("regs-head").replaceChildren(tr0);
@@ -99,10 +100,12 @@ function renderRegs(){
     const tr = document.createElement("tr");
     const sel = document.createElement("select");
     ["Not paid", "Paid"].forEach(o => { const op = document.createElement("option"); op.textContent = o; if (r.status === o) op.selected = true; sel.append(op); });
-    sel.addEventListener("change", async () => { try { await be.updateStatus(r.id, sel.value); r.status = sel.value; } catch (e){ sel.value = r.status; } });
+    mark(sel, "Paid");
+    sel.addEventListener("change", async () => { try { await be.updateStatus(r.id, sel.value); r.status = sel.value; } catch (e){ sel.value = r.status; } mark(sel, "Paid"); });
     const sc = document.createElement("td"); sc.append(sel);
     const tsel = document.createElement("select");
     ["Not picked up", "Picked up"].forEach(o => { const op = document.createElement("option"); op.textContent = o; if ((r.ticketStatus || "Not picked up") === o) op.selected = true; tsel.append(op); });
+    mark(tsel, "Picked up");
     tsel.addEventListener("change", async () => {
       const prev = r.ticketStatus || "Not picked up";
       try { await be.updateTicketStatus(r.id, tsel.value); r.ticketStatus = tsel.value; renderRegs(); } catch (e){ tsel.value = prev; }
@@ -161,7 +164,7 @@ function download(name, rows){
 $("export-regs").addEventListener("click", () => {
   const ev = EVENTS[eventId];
   const rows = regs.filter(r => r.eventId === eventId);
-  const head = ["Name", "Email"].concat(ev.counts.map(c => c.label), ev.extras.map(x => x.label), ["Total", "Status", "Tickets", "Registered", "Auto-deletes"]);
+  const head = ["Name", "Email"].concat(ev.counts.map(c => c.label), ev.extras.map(x => x.label), ["Total", "Payment", "Tickets", "Registered", "Auto-deletes"]);
   download(eventId + "-registrations.csv", [head].concat(rows.map(r =>
     [r.name, r.email].concat(ev.counts.map(c => r[c.key]), ev.extras.map(x => r[x.key] || ""), [r.total, r.status, r.ticketStatus || "Not picked up", fmt(r.createdAt), fmt(r.deleteAt)]))));
 });
@@ -169,7 +172,7 @@ $("export-pdf").addEventListener("click", () => {
   const ev = EVENTS[eventId];
   const rows = regs.filter(r => r.eventId === eventId).sort((a, b) => a.name.localeCompare(b.name));
   if (!window.jspdf){ alert("PDF export is not available."); return; }
-  const head = ["Name"].concat(ev.counts.map(c => c.label), ev.extras.map(x => x.label), ["Total", "Status", "Tickets", "Attended"]);
+  const head = ["Name"].concat(ev.counts.map(c => c.label), ev.extras.map(x => x.label), ["Total", "Payment", "Tickets", "Attended"]);
   const attendedCol = head.length - 1;
   const doc = new window.jspdf.jsPDF({ unit: "pt", format: "letter", orientation: head.length > 7 ? "landscape" : "portrait" });
   doc.setFontSize(16); doc.text(ev.name + " - Registration roster", 40, 44);
