@@ -109,3 +109,8 @@ body.light .gate button:hover{filter:brightness(1.1)}
 body.light .hero{padding-bottom:10px}
 .hero .about{max-width:680px;margin:6px auto 0;font-size:18px;line-height:1.7;color:var(--ink)}
 .topbar{justify-content:flex-end;margin-top:24px}
+.tabrow{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin:22px 0 14px}
+.tabrow .tabs2{margin:0}
+.userbox{display:flex;align-items:center;gap:10px}
+#content .notice{margin:20px 0 0}
+#content .notice[hidden]{display:none}

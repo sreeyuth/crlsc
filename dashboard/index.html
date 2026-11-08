@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' https://www.gstatic.com; style-src 'self'; img-src 'self' data:; connect-src https://firestore.googleapis.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com; form-action 'none'; base-uri 'none'">
 <meta name="referrer" content="no-referrer">
 <meta name="robots" content="noindex, nofollow, noarchive">
-<link rel="stylesheet" href="/assets/site.css?v=8">
+<link rel="stylesheet" href="/assets/site.css?v=9">
 </head>
 <body class="light">
 <header class="site"><div class="wrap">
@@ -34,16 +34,16 @@
   </div>
 
   <div id="content" hidden>
-    <div class="topbar">
-      <h1 class="sr-only">Dashboard</h1>
-      <div><span id="who" class="updated"></span> <button class="btn-s" id="signout">Sign out</button></div>
-    </div>
+    <h1 class="sr-only">Dashboard</h1>
     <p class="notice" id="mode-note" hidden>Demo mode: sample data only, stored in this browser tab. Nothing is sent anywhere.</p>
     <p class="notice" id="denied" hidden>You are signed in but not on the organizer list, so no data can be shown.</p>
 
-    <div class="tabs2" role="tablist">
-      <button class="tab2 active" data-tab="regs" role="tab">Registrations</button>
-      <button class="tab2" data-tab="subs" role="tab">Subscriber list</button>
+    <div class="tabrow">
+      <div class="tabs2" role="tablist">
+        <button class="tab2 active" data-tab="regs" role="tab">Registrations</button>
+        <button class="tab2" data-tab="subs" role="tab">Subscriber list</button>
+      </div>
+      <div class="userbox"><span id="who" class="updated"></span> <button class="btn-s" id="signout">Sign out</button></div>
     </div>
 
     <section id="tab-regs">
