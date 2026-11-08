@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' https://www.gstatic.com; style-src 'self'; img-src 'self' data:; connect-src https://firestore.googleapis.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com; form-action 'none'; base-uri 'none'">
 <meta name="referrer" content="no-referrer">
 <meta name="robots" content="noindex, nofollow, noarchive">
-<link rel="stylesheet" href="/assets/site.css">
+<link rel="stylesheet" href="/assets/site.css?v=4">
 </head>
 <body class="light">
 <header class="site"><div class="wrap">
@@ -26,8 +26,7 @@
 </div></header>
 <main class="wrap">
   <div class="gate" id="gate">
-    <h1 class="small">Organizer sign-in</h1>
-    <p id="gate-msg">Authorized organizers only.</p>
+    <p id="gate-msg">Authorized users only.</p>
     <input type="email" id="email" autocomplete="username" placeholder="Email" aria-label="Email" class="plain">
     <input type="password" id="pw" autocomplete="current-password" placeholder="Password" aria-label="Password" class="plain">
     <button id="go">Sign in</button>

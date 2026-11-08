@@ -82,3 +82,9 @@ body.light .gate button,body.light .btn,body.light .tab2.active{color:#fff}
 body.light .tab2{color:var(--soft)}
 body.light .err{color:#B3261E}
 body.light .gate{box-shadow:0 2px 10px rgba(11,63,99,.08)}
+
+/* ---- form contrast safeguards (autofill, placeholders) ---- */
+.gate input::placeholder{color:#7a6c5d;opacity:1}
+.gate input:-webkit-autofill,.gate input:-webkit-autofill:focus{-webkit-text-fill-color:var(--ink);caret-color:var(--ink);box-shadow:0 0 0 1000px #FFFDF7 inset;border:1px solid var(--line)}
+.gate input:focus-visible,.gate button:focus-visible{outline:3px solid #0B5A8C;outline-offset:2px}
+body.light .gate button:hover{filter:brightness(1.1)}
