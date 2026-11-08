@@ -14,3 +14,6 @@
 .mainnav .menu a{display:block;padding:10px 12px;border-radius:8px;color:#F5EFE4;text-decoration:none;font-size:14px}
 .mainnav .menu a:hover{background:#832030;color:#D4AF37}
 .mainnav :focus-visible{outline:2px solid #D4AF37;outline-offset:2px}
+.consent-row a{color:#F0D77B;text-decoration:underline}
+.consent-row a:hover{color:#fff}
+.required-tag{color:#F0D77B}

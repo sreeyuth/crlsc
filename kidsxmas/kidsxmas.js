@@ -19,6 +19,7 @@ if (backend.isLive){ const b = document.getElementById("demo-banner"); if (b) b.
   const formView = document.getElementById("form-view");
   const confirmView = document.getElementById("confirm-view");
   const consentEmails = document.getElementById("consent-emails");
+  const consentPrivacy = document.getElementById("consent-privacy");
 
   let etransferConfirmed = false;
 
@@ -55,7 +56,8 @@ if (backend.isLive){ const b = document.getElementById("demo-banner"); if (b) b.
     const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value.trim());
     const partyOk = currentPartySize() >= 1;
     const paymentOk = etransferConfirmed === true;
-    const ready = nameOk && emailOk && partyOk && paymentOk;
+    const consentOk = consentPrivacy.checked;
+    const ready = nameOk && emailOk && partyOk && paymentOk && consentOk;
     submitBtn.disabled = !ready;
     submitBtn.classList.toggle("enabled", ready);
     if (!nameOk){
@@ -66,12 +68,15 @@ if (backend.isLive){ const b = document.getElementById("demo-banner"); if (b) b.
       helperText.textContent = "Select at least one ticket.";
     } else if (!paymentOk){
       helperText.textContent = "Confirm you've sent the e-transfer above to activate submission.";
+    } else if (!consentOk){
+      helperText.textContent = "Tick the privacy consent box above to continue.";
     } else {
       helperText.textContent = "You're all set — confirm below.";
     }
   }
 
   [adultsSelect, childrenSelect].forEach(sel => sel.addEventListener("change", refreshTotals));
+  consentPrivacy.addEventListener("change", updateSubmitState);
   nameInput.addEventListener("input", updateSubmitState);
   emailInput.addEventListener("input", updateSubmitState);
 
