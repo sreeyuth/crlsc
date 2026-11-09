@@ -135,10 +135,25 @@ function renderSubs(){
       if (!confirm("Remove " + s.email + " from the email list?")) return;
       await be.removeSubscriber(s.email); refresh();
     }, "btn-danger"));
-    tr.append(td(s.email), td(fmt(s.consentAt)), td(EVENTS[s.source] ? EVENTS[s.source].name : s.source), dc);
+    tr.append(td(s.email), td(fmt(s.consentAt)), td(EVENTS[s.source] ? EVENTS[s.source].name : (s.source === "manual" ? "Added manually" : s.source)), dc);
     body.append(tr);
   });
 }
+
+/* ---------- Add subscriber manually ---------- */
+const addForm = $("add-sub-form"), addInput = $("add-sub-email"), addMsg = $("add-sub-msg");
+$("add-sub-btn").addEventListener("click", () => { addForm.hidden = false; addMsg.textContent = ""; addInput.value = ""; addInput.focus(); });
+$("add-sub-cancel").addEventListener("click", () => { addForm.hidden = true; });
+addForm.addEventListener("submit", async ev => {
+  ev.preventDefault();
+  const e = addInput.value.trim().toLowerCase();
+  if (e.length > 254 || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(e)){ addMsg.textContent = "Please enter a valid email address."; return; }
+  try {
+    const added = await be.addSubscriberManual(e);
+    addMsg.textContent = added ? "Added " + e + "." : e + " is already on the list.";
+    if (added){ addInput.value = ""; await refresh(); addInput.focus(); }
+  } catch (err){ addMsg.textContent = "Could not add that email. Please try again."; }
+});
 
 /* ---------- Tabs, event select ---------- */
 document.querySelectorAll(".tab2").forEach(b => b.addEventListener("click", () => {

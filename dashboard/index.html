@@ -69,14 +69,21 @@
     <section id="tab-subs" hidden>
       <div class="toolbar">
         <strong id="subs-count">0 subscribers</strong>
+        <button class="btn-p" id="add-sub-btn">Add email</button>
         <button class="btn-p" id="copy-subs">Copy all emails</button>
         <button class="btn-p" id="export-subs">Export CSV</button>
       </div>
+      <form id="add-sub-form" class="toolbar" hidden novalidate>
+        <input type="email" id="add-sub-email" placeholder="name@example.com" autocomplete="off" maxlength="254" aria-label="Email address to add">
+        <button class="btn-p" type="submit">Add</button>
+        <button class="btn-s" type="button" id="add-sub-cancel">Cancel</button>
+        <span id="add-sub-msg" role="status"></span>
+      </form>
       <div class="scroll"><table>
         <thead><tr><th>Email</th><th>Consent given</th><th>Source event</th><th></th></tr></thead>
         <tbody id="subs-body"></tbody>
       </table></div>
-      <p class="updated">Emails only, with no names, for people who agreed to hear about future events. Every message you send must include an unsubscribe option; use Remove here when someone unsubscribes.</p>
+      <p class="updated">Emails only, with no names, for people who agreed to hear about future events. Only add people who have agreed to receive emails. Every message you send must include an unsubscribe option; use Remove here when someone unsubscribes.</p>
     </section>
   </div>
 </main>

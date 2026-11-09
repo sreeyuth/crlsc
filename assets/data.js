@@ -70,6 +70,11 @@ function makeDemo(){
       if (!d.subs.some(s => s.email === e)) d.subs.push({ email: e, consentAt: Date.now(), source: eventId });
       save(d);
     },
+    async addSubscriberManual(email){
+      const e = cleanEmail(email), d = state();
+      if (d.subs.some(s => s.email === e)) return false;
+      d.subs.push({ email: e, consentAt: Date.now(), source: "manual" }); save(d); return true;
+    },
     async signIn(_email, pass){
       if (await sha(pass) !== DEMO_HASH) throw new Error("bad");
       signedIn = true; if (listener) listener({ email: "demo" });
@@ -114,6 +119,13 @@ async function makeLive(){
       const e = cleanEmail(email);
       try { await fs.setDoc(fs.doc(db, "subscribers", e), { email: e, consentAt: fs.Timestamp.now(), source: eventId }); }
       catch(err){ /* already on the list: rules only allow create, so a repeat is refused. That is fine. */ }
+    },
+    async addSubscriberManual(email){
+      const e = cleanEmail(email);
+      const ref = fs.doc(db, "subscribers", e);
+      if ((await fs.getDoc(ref)).exists()) return false;
+      await fs.setDoc(ref, { email: e, consentAt: fs.Timestamp.now(), source: "manual" });
+      return true;
     },
     signIn: (email, pass) => au.signInWithEmailAndPassword(auth, email, pass),
     signOut: () => au.signOut(auth),
