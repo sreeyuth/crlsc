@@ -147,3 +147,14 @@ header.site .wrap,header.site .wrap.wide{max-width:1200px;padding:0 24px;min-hei
 .reg[data-state="closed"] .dot{background:#D32F2F}
 @keyframes regblink{0%,100%{opacity:1;box-shadow:0 0 9px 3px rgba(31,179,79,.55)}50%{opacity:.25;box-shadow:0 0 0 0 rgba(31,179,79,0)}}
 @media (prefers-reduced-motion:reduce){.reg .dot{animation:none!important}}
+
+/* ---- home hero: logo left, About text right, one row ---- */
+body.light .hero{display:flex;align-items:center;gap:32px;text-align:left;padding:24px 20px 0}
+body.light .hero .logo{margin:0;flex:none;width:170px;height:auto}
+body.light .hero .about{margin:0;max-width:none;text-align:left}
+body.light .hero + .wrap h2:first-child{margin-top:28px}
+@media (max-width:640px){
+  body.light .hero{flex-direction:column;text-align:center;gap:12px}
+  body.light .hero .logo{width:150px}
+  body.light .hero .about{text-align:center}
+}
