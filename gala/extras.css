@@ -31,3 +31,10 @@ body:has(#demo-banner){padding-bottom:48px}
 .mainnav{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
 .mainnav a,.mainnav button{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-weight:400;letter-spacing:normal;text-transform:none;margin-left:0}
 .mainnav .navbtn.solid{font-weight:700}
+
+/* phones: Events menu opens as a full-width panel under the header */
+@media (max-width:760px){
+  nav.tabs{position:relative;padding-top:12px;padding-bottom:12px;row-gap:8px}
+  .mainnav .dropdown{position:static}
+  .mainnav .menu{left:16px;right:16px;top:100%;min-width:0;margin-top:6px}
+}

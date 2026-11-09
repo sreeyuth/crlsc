@@ -129,3 +129,10 @@ header.site .wrap,header.site .wrap.wide{max-width:1200px;padding:0 24px;min-hei
 .mainnav a,.mainnav button{margin-left:0}
 .mainnav .navbtn.solid{font-weight:700}
 .mainnav .navlink{border:1px solid transparent}
+
+/* ---- phones: Events menu opens as a full-width panel under the header ---- */
+@media (max-width:760px){
+  header.site .wrap{position:relative;padding-top:12px;padding-bottom:12px;row-gap:8px}
+  header.site .dropdown{position:static}
+  header.site .menu{left:16px;right:16px;top:100%;min-width:0;margin-top:6px}
+}
