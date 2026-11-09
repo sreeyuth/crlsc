@@ -4,11 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Chalk River Social Club</title>
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' https://www.gstatic.com; style-src 'self'; img-src 'self' data:; connect-src https://firestore.googleapis.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com; form-action 'none'; base-uri 'none'">
 <meta name="referrer" content="no-referrer">
 <meta name="description" content="Chalk River Social Club organizes community events for CNL staff, contractors, and their families and friends.">
 <link rel="icon" type="image/png" href="/assets/favicon.png">
-<link rel="stylesheet" href="/assets/site.css?v=18">
+<link rel="stylesheet" href="/assets/site.css?v=20">
 </head>
 <body class="light">
 <header class="site"><div class="wrap">
@@ -35,15 +35,15 @@
 
 <div class="wrap">
   <h2>Upcoming Events</h2>
-  <a class="event" href="/kidsxmas/">
-    <div class="date">Sunday, November 29, 2026</div>
+  <a class="event" href="/kidsxmas/" data-event="kidsxmas">
+    <div class="evtop"><div class="date">Sunday, November 29, 2026</div><span class="reg" data-state="loading" role="status"><i class="dot" aria-hidden="true"></i><span class="reglabel">Checking...</span></span></div>
     <h3>🎅 CNL Kids Christmas Party 🎄</h3>
     <div class="meta">11:30 AM – 1:00 PM · Petawawa Civic Centre (Upstairs)</div>
     <div class="meta">Activity stations, a picture with Santa, close-up magic, pizza and snacks.</div>
     <span class="go">View details &amp; register →</span>
   </a>
-  <a class="event" href="/gala/">
-    <div class="date">Saturday, December 12, 2026</div>
+  <a class="event" href="/gala/" data-event="gala">
+    <div class="evtop"><div class="date">Saturday, December 12, 2026</div><span class="reg" data-state="loading" role="status"><i class="dot" aria-hidden="true"></i><span class="reglabel">Checking...</span></span></div>
     <h3>🎄 CNL Christmas Gala 2026 🎄</h3>
     <div class="meta">Doors open 5:00 PM · Chalk River Area Lions Hall</div>
     <div class="meta">An evening of dinner, dancing and socializing.</div>
@@ -64,4 +64,5 @@
 </main>
 <footer class="site"><div class="wrap">© 2026 Chalk River Social Club · <a href="mailto:crsocclb@cnl.ca">crsocclb@cnl.ca</a> · <a href="/privacy/">Privacy Policy</a></div></footer>
 <script type="module" src="/assets/nav.js"></script>
+<script type="module" src="/assets/home.js"></script>
 </body></html>
