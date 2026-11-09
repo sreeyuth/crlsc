@@ -158,3 +158,10 @@ body.light .hero + .wrap h2:first-child{margin-top:28px}
   body.light .hero .logo{width:150px}
   body.light .hero .about{text-align:center}
 }
+
+/* ---- dashboard: add-emails box ---- */
+.addbox{margin:12px 0;padding:14px;border:1px solid var(--line,#d9cfb8);border-radius:10px;background:#fffdf7}
+.addbox label{display:block;font-weight:600;margin-bottom:8px}
+.addbox textarea{width:100%;min-height:200px;box-sizing:border-box;padding:10px;font:inherit;line-height:1.5;border:1px solid #b9ae94;border-radius:8px;background:#fff;color:#222;resize:vertical}
+.addbox .addrow{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:10px}
+.addbox #add-sub-msg{flex:1 1 240px;font-size:.95em}

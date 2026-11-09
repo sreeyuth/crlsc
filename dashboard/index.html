@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' https://www.gstatic.com; style-src 'self'; img-src 'self' data:; connect-src https://firestore.googleapis.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com; form-action 'none'; base-uri 'none'">
 <meta name="referrer" content="no-referrer">
 <meta name="robots" content="noindex, nofollow, noarchive">
-<link rel="stylesheet" href="/assets/site.css?v=21">
+<link rel="stylesheet" href="/assets/site.css?v=22">
 </head>
 <body class="light">
 <header class="site"><div class="wrap">
@@ -73,11 +73,14 @@
         <button class="btn-p" id="copy-subs">Copy all emails</button>
         <button class="btn-p" id="export-subs">Export CSV</button>
       </div>
-      <form id="add-sub-form" class="toolbar" hidden novalidate>
-        <input type="email" id="add-sub-email" placeholder="name@example.com" autocomplete="off" maxlength="254" aria-label="Email address to add">
-        <button class="btn-p" type="submit">Add</button>
-        <button class="btn-s" type="button" id="add-sub-cancel">Cancel</button>
-        <span id="add-sub-msg" role="status"></span>
+      <form id="add-sub-form" class="addbox" hidden novalidate>
+        <label for="add-sub-email">Email addresses (separate several with a semicolon <strong>;</strong>)</label>
+        <textarea id="add-sub-email" rows="8" placeholder="To add multiple emails, separate them with a semicolon (;)&#10;&#10;Example: name1@example.com; name2@example.com; name3@example.com" autocomplete="off" spellcheck="false"></textarea>
+        <div class="addrow">
+          <button class="btn-p" type="submit">Add</button>
+          <button class="btn-s" type="button" id="add-sub-cancel">Cancel</button>
+          <span id="add-sub-msg" role="status"></span>
+        </div>
       </form>
       <div class="scroll"><table>
         <thead><tr><th>Email</th><th>Consent given</th><th>Source event</th><th></th></tr></thead>

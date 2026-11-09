@@ -146,13 +146,21 @@ $("add-sub-btn").addEventListener("click", () => { addForm.hidden = false; addMs
 $("add-sub-cancel").addEventListener("click", () => { addForm.hidden = true; });
 addForm.addEventListener("submit", async ev => {
   ev.preventDefault();
-  const e = addInput.value.trim().toLowerCase();
-  if (e.length > 254 || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(e)){ addMsg.textContent = "Please enter a valid email address."; return; }
-  try {
-    const added = await be.addSubscriberManual(e);
-    addMsg.textContent = added ? "Added " + e + "." : e + " is already on the list.";
-    if (added){ addInput.value = ""; await refresh(); addInput.focus(); }
-  } catch (err){ addMsg.textContent = "Could not add that email. Please try again."; }
+  const parts = [...new Set(addInput.value.split(/[;\n,]+/).map(x => x.trim().toLowerCase()).filter(Boolean))];
+  if (!parts.length){ addMsg.textContent = "Please enter at least one email address."; return; }
+  const ok = /^[^@\s]+@[^@\s]+\.[^@\s]+$/, bad = [];
+  let added = 0, dup = 0, failed = 0;
+  for (const e of parts){
+    if (e.length > 254 || !ok.test(e)){ bad.push(e); continue; }
+    try { (await be.addSubscriberManual(e)) ? added++ : dup++; } catch (err){ failed++; bad.push(e); }
+  }
+  const msg = [];
+  if (added) msg.push(added + " added");
+  if (dup) msg.push(dup + " already on the list");
+  if (bad.length) msg.push(bad.length + " not added" + (failed ? "" : " (invalid)") + ": " + bad.join("; "));
+  addMsg.textContent = msg.join(". ") + ".";
+  addInput.value = bad.join("; ");
+  if (added) await refresh();
 });
 
 /* ---------- Tabs, event select ---------- */
@@ -215,7 +223,7 @@ $("export-subs").addEventListener("click", () => {
   download("email-list.csv", [["Email","Consent given","Source"]].concat(subs.map(s => [s.email, fmt(s.consentAt), s.source])));
 });
 $("copy-subs").addEventListener("click", async () => {
-  const text = subs.map(s => s.email).join(", ");
+  const text = subs.map(s => s.email).join("; ");
   try { await navigator.clipboard.writeText(text); $("copy-subs").textContent = "Copied!"; }
   catch (e){ $("copy-subs").textContent = "Copy failed"; }
   setTimeout(() => { $("copy-subs").textContent = "Copy all emails"; }, 1800);
