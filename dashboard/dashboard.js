@@ -135,7 +135,7 @@ function renderSubs(){
       if (!confirm("Remove " + s.email + " from the email list?")) return;
       await be.removeSubscriber(s.email); refresh();
     }, "btn-danger"));
-    tr.append(td(s.email), td(fmt(s.consentAt)), td(EVENTS[s.source] ? EVENTS[s.source].name : (s.source === "manual" ? "Added manually" : s.source)), dc);
+    tr.append(td(s.email), td(fmt(s.consentAt)), td(EVENTS[s.source] ? EVENTS[s.source].name : (s.source === "manual" ? "Added manually" : (s.source === "subscribe" ? "Subscribe page" : s.source))), dc);
     body.append(tr);
   });
 }

@@ -165,3 +165,12 @@ body.light .hero + .wrap h2:first-child{margin-top:28px}
 .addbox textarea{width:100%;min-height:200px;box-sizing:border-box;padding:10px;font:inherit;line-height:1.5;border:1px solid #b9ae94;border-radius:8px;background:#fff;color:#222;resize:vertical}
 .addbox .addrow{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:10px}
 .addbox #add-sub-msg{flex:1 1 240px;font-size:.95em}
+
+/* ---- subscribe page ---- */
+.subform{max-width:520px;margin:16px 0}
+.subform label:not(.consent-row){display:block;font-weight:600;margin-bottom:6px}
+.subform input[type=email]{width:100%;box-sizing:border-box;padding:10px 12px;font:inherit;border:1px solid #b9ae94;border-radius:8px;background:#fff;color:#222}
+.subform .consent-row{display:flex;gap:10px;align-items:flex-start;margin:14px 0;font-weight:400}
+.subform .consent-row input{margin-top:4px;flex:none}
+.subform .submsg{min-height:1.4em;color:#a12a2a;margin:6px 0}
+.subform .btn-p{padding:10px 22px}

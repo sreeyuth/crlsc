@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Subscribe · Chalk River Social Club</title>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' https://www.gstatic.com; style-src 'self'; img-src 'self' data:; connect-src https://firestore.googleapis.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="description" content="Chalk River Social Club organizes community events for CNL staff, contractors, and their families and friends.">
+<link rel="icon" type="image/png" href="/assets/favicon.png">
+<link rel="stylesheet" href="/assets/site.css?v=23">
+</head>
+<body class="light">
+<header class="site"><div class="wrap">
+  <a class="brand" href="/">Chalk River Social Club</a>
+  <nav class="mainnav" aria-label="Main">
+    <a href="/" class="navlink">Home</a>
+    <div class="dropdown">
+      <button type="button" class="navbtn" id="events-btn" aria-haspopup="true" aria-expanded="false">Events <span aria-hidden="true">▾</span></button>
+      <ul class="menu" id="events-menu" hidden>
+        <li><a href="/kidsxmas/">CNL Kids Christmas Party</a></li>
+        <li><a href="/gala/">CNL Christmas Gala</a></li>
+      </ul>
+    </div>
+    <a href="/subscribe/" class="navlink">Subscribe</a>
+    <a href="/privacy/" class="navlink">Privacy</a>
+    <a href="/dashboard/" class="navbtn solid">Dashboard</a>
+  </nav>
+</div></header>
+<main class="wrap prose">
+<h1 class="top">Subscribe for event emails</h1>
+<p>Want to hear about future Chalk River Social Club events? Enter your email address below and we will send you announcements.</p>
+<form id="sub-form" class="subform" novalidate>
+  <label for="sub-email">Email address</label>
+  <input type="email" id="sub-email" autocomplete="email" maxlength="254" placeholder="name@example.com" required>
+  <label class="consent-row">
+    <input type="checkbox" id="sub-consent" required>
+    <span>I agree to the Club storing my email address and emailing me about future events, as described in the <a href="/privacy/">Privacy Policy</a>.</span>
+  </label>
+  <p id="sub-msg" class="submsg" role="status"></p>
+  <button type="submit" class="btn-p" id="sub-btn">Subscribe</button>
+</form>
+<div id="sub-done" hidden>
+  <h2>Thank you!</h2>
+  <p>Your email address has been added. You will hear from us about upcoming events.</p>
+</div>
+<p class="updated">Only your email address is stored (no name). Every message includes a way to unsubscribe, and you can ask to be removed at any time. See the <a href="/privacy/">Privacy Policy</a>.</p>
+</main>
+<footer class="site"><div class="wrap">© 2026 Chalk River Social Club · <a href="/privacy/">Privacy Policy</a></div></footer>
+<script type="module" src="/assets/nav.js"></script>
+<script type="module" src="subscribe.js"></script>
+</body>
+</html>
