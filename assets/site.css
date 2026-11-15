@@ -301,3 +301,6 @@ body.light .stats .card{padding:16px 18px}
   body.light .event:hover{transform:none}
 }
 @media (max-width:760px){body.light header.site{position:relative}}
+
+/* dashboard: event selector sized to match the buttons */
+body.light #event-select{font:inherit;font-size:14px;font-weight:600;padding:9px 16px;min-height:43px;border-radius:8px;color:#0B3F63;cursor:pointer}
