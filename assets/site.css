@@ -174,3 +174,130 @@ body.light .hero + .wrap h2:first-child{margin-top:28px}
 .subform .consent-row input{margin-top:4px;flex:none}
 .subform .submsg{min-height:1.4em;color:#a12a2a;margin:6px 0}
 .subform .btn-p{padding:10px 22px}
+
+/* =====================================================================
+   LIQUID GLASS (home, privacy, dashboard, subscribe)
+   Translucent, blurred, softly lit surfaces floating over a colourful
+   ambient background. Scoped to body.light so the festive event pages
+   keep their own themes.
+   ===================================================================== */
+body.light{
+  --glass:rgba(255,255,255,.46);
+  --glass-strong:rgba(255,255,255,.66);
+  --glass-edge:rgba(255,255,255,.72);
+  --glass-shadow:0 8px 32px rgba(11,63,99,.12),0 1px 2px rgba(11,63,99,.06);
+  --glass-light:inset 0 1px 0 rgba(255,255,255,.95),inset 0 -1px 0 rgba(255,255,255,.35),inset 0 0 18px rgba(255,255,255,.28);
+  --blur:blur(22px) saturate(180%);
+  background:#F4ECDA;
+}
+/* ambient colour field behind everything (colours from the club logo) */
+body.light::before{
+  content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:
+    radial-gradient(560px 440px at 10% 6%,rgba(0,174,239,.30),transparent 70%),
+    radial-gradient(600px 480px at 94% 20%,rgba(140,198,63,.26),transparent 70%),
+    radial-gradient(680px 540px at 72% 100%,rgba(11,90,140,.24),transparent 70%),
+    radial-gradient(520px 420px at 4% 88%,rgba(72,190,170,.26),transparent 70%);
+}
+
+/* shared glass surface */
+body.light header.site::before,
+body.light .event,body.light .card,body.light .gate,body.light .notice,
+body.light .addbox,body.light .subform,body.light table,body.light .menu,
+body.light .tab2:not(.active),body.light .btn-s,body.light .btn-danger{
+  -webkit-backdrop-filter:var(--blur);backdrop-filter:var(--blur);
+}
+body.light .event,body.light .card,body.light .gate,body.light .notice,
+body.light .addbox,body.light table{
+  background:var(--glass);border:1px solid var(--glass-edge);border-radius:22px;
+  box-shadow:var(--glass-shadow),var(--glass-light);
+}
+body.light .subform{
+  background:var(--glass);border:1px solid var(--glass-edge);border-radius:22px;padding:22px;
+  box-shadow:var(--glass-shadow),var(--glass-light);
+}
+
+/* floating header */
+body.light header.site{
+  position:sticky;top:0;z-index:50;background:transparent;border-bottom:0;
+}
+body.light header.site::before{
+  content:"";position:absolute;inset:0;z-index:-1;
+  background:var(--glass-strong);border-bottom:1px solid var(--glass-edge);
+  box-shadow:0 6px 24px rgba(11,63,99,.10),inset 0 -1px 0 rgba(255,255,255,.5),inset 0 1px 0 rgba(255,255,255,.9);
+}
+body.light .menu{
+  background:var(--glass-strong);border:1px solid var(--glass-edge);border-radius:20px;
+  box-shadow:0 18px 44px rgba(11,63,99,.20),var(--glass-light);
+}
+body.light .menu a{border-radius:14px}
+body.light .menu a:hover{background:rgba(11,90,140,.10);color:#0B3F63}
+
+/* event cards */
+body.light .event{transition:transform .25s ease,box-shadow .25s ease,background .25s ease}
+body.light .event:hover{
+  background:var(--glass-strong);transform:translateY(-2px);
+  box-shadow:0 14px 40px rgba(11,63,99,.18),var(--glass-light);
+}
+body.light .event:active{transform:translateY(0) scale(.995)}
+
+/* dashboard table */
+body.light table{overflow:hidden}
+body.light th{background:rgba(255,255,255,.35)}
+body.light th,body.light td{border-bottom:1px solid rgba(11,90,140,.12)}
+body.light tbody tr:hover td{background:rgba(255,255,255,.35)}
+
+/* buttons: tinted glass */
+body.light .navbtn.solid,body.light .btn-p{
+  background:linear-gradient(180deg,rgba(32,128,186,.96),rgba(9,74,115,.96));
+  border-color:rgba(255,255,255,.35);color:#fff;
+  box-shadow:0 6px 16px rgba(11,90,140,.32),inset 0 1px 0 rgba(255,255,255,.45);
+}
+body.light .navbtn.solid:hover,body.light .btn-p:hover{filter:brightness(1.08);background:linear-gradient(180deg,rgba(32,128,186,.96),rgba(9,74,115,.96))}
+body.light .btn-close,body.light .btn-open{
+  border-color:rgba(255,255,255,.35);box-shadow:0 6px 16px rgba(0,0,0,.18),inset 0 1px 0 rgba(255,255,255,.4);
+}
+body.light .btn-s,body.light .btn-danger,body.light .tab2:not(.active){
+  background:var(--glass-strong);border:1px solid var(--glass-edge);
+  box-shadow:0 2px 10px rgba(11,63,99,.08),inset 0 1px 0 rgba(255,255,255,.9);
+}
+body.light .btn-s{color:#0B5A8C}
+body.light .btn-s:hover,body.light .tab2:not(.active):hover{background:rgba(255,255,255,.85)}
+body.light .btn-danger:hover{background:rgba(251,233,234,.9)}
+body.light .tab2.active{
+  background:linear-gradient(180deg,rgba(32,128,186,.96),rgba(9,74,115,.96));border:1px solid rgba(255,255,255,.35);
+  box-shadow:0 6px 16px rgba(11,90,140,.30),inset 0 1px 0 rgba(255,255,255,.45);
+}
+body.light .navbtn,body.light .btn-p,body.light .btn-s,body.light .btn-close,body.light .btn-open,body.light .btn-danger,body.light .tab2{
+  transition:background .2s ease,filter .2s ease,transform .15s ease,box-shadow .2s ease;
+}
+body.light .btn-p:active,body.light .btn-s:active,body.light .navbtn.solid:active{transform:scale(.97)}
+
+/* inputs: frosted wells */
+body.light .gate input,body.light .addbox textarea,body.light .subform input[type=email],body.light select:not(.sel-good){
+  background:rgba(255,255,255,.72);border:1px solid rgba(11,90,140,.22);border-radius:12px;
+  box-shadow:inset 0 1px 3px rgba(11,63,99,.08);
+}
+body.light .gate input:focus,body.light .addbox textarea:focus,body.light .subform input[type=email]:focus{
+  outline:3px solid rgba(11,90,140,.45);outline-offset:1px;background:#fff;
+}
+body.light .gate button{border-radius:14px}
+
+/* tidy: stat cards get a little more breathing room */
+body.light .stats .card{padding:16px 18px}
+
+/* fall back to solid surfaces where blur is unavailable or unwanted */
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+  body.light{--glass:rgba(255,253,247,.96);--glass-strong:rgba(255,253,247,.98)}
+}
+@media (prefers-reduced-transparency:reduce){
+  body.light{--glass:#FFFDF7;--glass-strong:#FFFDF7}
+  body.light header.site::before,body.light .event,body.light .card,body.light .gate,body.light .notice,
+  body.light .addbox,body.light .subform,body.light table,body.light .menu,body.light .tab2,body.light .btn-s,body.light .btn-danger{
+    -webkit-backdrop-filter:none;backdrop-filter:none}
+}
+@media (prefers-reduced-motion:reduce){
+  body.light .event,body.light .navbtn,body.light .btn-p,body.light .btn-s,body.light .tab2{transition:none}
+  body.light .event:hover{transform:none}
+}
+@media (max-width:760px){body.light header.site{position:relative}}
